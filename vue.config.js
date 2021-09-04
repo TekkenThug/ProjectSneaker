@@ -1,10 +1,11 @@
 module.exports = {
-    pluginOptions: {
-        'style-resources-loader': {
-            preProcessor: 'scss',
-            patterns: [
-                './src/styles/*/*.scss',
-            ]
-        }
-    }
+    css: {
+        loaderOptions: {
+            sass: {
+                additionalData: `
+                  @import "@/styles/variables/colors.scss";
+                `,
+            },
+        },
+    },
 }
