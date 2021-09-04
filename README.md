@@ -1,4 +1,4 @@
-# project-sneaker
+# ProjectSneaker
 
 ## Project setup
 ```
