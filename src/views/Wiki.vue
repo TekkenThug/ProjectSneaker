@@ -10,15 +10,25 @@
         :icon="searchIcon"
         v-model="searchValue"
     />
+    <div class="start__results">
+      <sneaker-card
+          v-for="pair in resultSneaker"
+          :key="pair.vendorCode"
+          :product-info="pair"
+      />
+    </div>
   </div>
 </template>
 
 <script>
+import sneakers from "@/mock/sneakers";
+
 import SearchField from "@/components/UI/Input";
+import SneakerCard from "@/components/Card";
 
 export default {
   name: "Wiki",
-  components: { SearchField },
+  components: { SearchField, SneakerCard },
 
   data() {
     return {
@@ -28,7 +38,8 @@ export default {
         name: 'search'
       },
 
-      searchValue: ''
+      searchValue: '',
+      resultSneaker: sneakers
     }
   }
 }
@@ -57,6 +68,11 @@ export default {
         fill: red;
         color: red;
       }
+    }
+
+    &__results {
+      max-width: 500px;
+      margin: 0 auto;
     }
   }
 </style>
