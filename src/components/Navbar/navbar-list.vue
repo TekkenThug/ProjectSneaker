@@ -2,7 +2,7 @@
   <ul class="navbar__list">
     <navbar-item
         v-for="route in routes"
-        :key="route"
+        :key="route.link"
         :title="route.title"
         :link="route.link"
     />
@@ -29,7 +29,13 @@ export default {
     display: flex;
     font-size: 18px;
 
-    li {
+    .navbar__item {
+      @include trans;
+
+      &:hover {
+        color: $white;
+      }
+
       &:not(&:first-child) {
         margin-left: 30px;
       }
