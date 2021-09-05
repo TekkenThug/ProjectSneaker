@@ -8,9 +8,8 @@
         class="start__search"
         placeholder="Какие кроссовки интересуют?"
         :icon="searchIcon"
-        v-model="results"
+        v-model="searchValue"
     />
-    {{ results }}
   </div>
 </template>
 
@@ -29,7 +28,7 @@ export default {
         name: 'search'
       },
 
-      results: '',
+      searchValue: ''
     }
   }
 }
