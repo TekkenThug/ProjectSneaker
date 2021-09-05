@@ -32,8 +32,10 @@ export default {
     .navbar__item {
       @include trans;
 
+      color: $color-0;
+
       &:hover {
-        color: $white;
+        color: $color-1;
       }
 
       &:not(&:first-child) {

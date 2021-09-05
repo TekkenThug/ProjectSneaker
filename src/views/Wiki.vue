@@ -92,7 +92,7 @@ export default {
     }
 
     &__subtitle {
-      color: rgba($gray, .8);
+      color: rgba($color-3, .8);
       max-width: 300px;
     }
 

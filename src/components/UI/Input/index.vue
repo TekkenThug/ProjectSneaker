@@ -68,7 +68,7 @@ export default {
       bottom: 0;
       right: 0;
       z-index: -1;
-      border: 3px solid $orange;
+      border: 3px solid $color-4;
       border-radius: 7px;
       opacity: 0;
     }
@@ -85,7 +85,7 @@ export default {
       padding: 8px 15px;
       border-radius: 7px;
       background-color: transparent;
-      border: 1px solid rgba($gray, .7);
+      border: 1px solid rgba($color-3, .7);
       flex-grow: 1;
 
       &:focus {

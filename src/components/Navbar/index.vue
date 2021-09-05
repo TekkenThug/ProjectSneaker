@@ -29,7 +29,7 @@ export default {
     display: flex;
     justify-content: space-between;
     align-items: flex-end;
-    background-color: $orange;
+    background-color: $color-4;
 
     &__logo {
       max-width: 120px;

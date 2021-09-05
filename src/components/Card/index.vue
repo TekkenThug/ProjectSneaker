@@ -62,7 +62,7 @@ export default {
       bottom: 0;
       right: 0;
       z-index: 0;
-      background-color: rgba($black, .3);
+      background-color: rgba($color-0, .3);
     }
 
     &__info {
@@ -75,7 +75,7 @@ export default {
       padding: 10px 15px;
       text-align: left;
       transform: translate(0, 70px);
-      color: $white;
+      color: $color-1;
     }
 
     &__title {
@@ -88,12 +88,12 @@ export default {
 
     &:hover {
       &::before {
-        background-color: rgba($black, .5);
+        background-color: rgba($color-0, .5);
       }
 
       .card__info {
-        background-color: $orange;
-        color: $black;
+        background-color: $color-4;
+        color: $color-0;
 
         transition: transform .3s ease;
         transform: translate(0, 0);

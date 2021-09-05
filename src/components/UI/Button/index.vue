@@ -34,9 +34,9 @@ export default {
     @include trans;
 
     padding: 10px 15px;
-    background-color: $orange;
+    background-color: $color-4;
     border-radius: 7px;
-    color: $white;
+    color: $color-1;
     font-weight: 700;
     display: flex;
     align-items: center;
