@@ -1,5 +1,5 @@
 <template>
-  <li>
+  <li class="navbar__item">
     <a :href="link">{{ title }}</a>
   </li>
 </template>
