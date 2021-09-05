@@ -1,7 +1,7 @@
 <template>
   <div class="navbar">
     <div class="navbar__logo">
-      <img src="" alt="logotype">
+      <img src="/images/logo.png" alt="logotype">
     </div>
     <navbar-list :routes="routes"/>
   </div>
@@ -37,5 +37,9 @@ export default {
     justify-content: space-between;
     align-items: center;
     border-bottom: 3px solid $orange;
+
+    &__logo {
+      max-width: 120px;
+    }
   }
 </style>
