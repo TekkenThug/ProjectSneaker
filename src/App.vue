@@ -1,7 +1,9 @@
 <template>
   <div id="app">
     <navbar :routes="routes" />
-    <router-view></router-view>
+    <div class="app-view">
+      <router-view></router-view>
+    </div>
   </div>
 </template>
 
@@ -23,5 +25,19 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+  .navbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+  }
 
+  .app-view {
+    min-height: 100vh;
+    padding: 40px;
+    flex-grow: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
 </style>
