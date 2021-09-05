@@ -1,24 +1,17 @@
-# ProjectSneaker
 
-## Project setup
+# 👟 ProjectSneaker
+
+A project site with a theme on sneakers. The big encyclopedia of sneakers from around the world: search, watch or contribute your sneakers
+
+
+## Deployment
+
+To deploy this project run
 ```
 npm install
 ```
+## Authors
 
-### Compiles and hot-reloads for development
-```
-npm run serve
-```
+- [@TekkenThug](https://www.github.com/TekkenThug)
 
-### Compiles and minifies for production
-```
-npm run build
-```
-
-### Lints and fixes files
-```
-npm run lint
-```
-
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+  
