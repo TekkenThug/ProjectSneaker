@@ -1,6 +1,6 @@
 import Vue from 'vue'
 import App from './App.vue'
-import './styles/tailwind.css'
+import './styles/tailwind.scss'
 import router from './router'
 
 import Preloader from "@/components/UI/_Preloader/Preloader";
