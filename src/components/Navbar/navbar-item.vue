@@ -1,6 +1,6 @@
 <template>
   <li class="navbar__item">
-    <a :href="link">{{ title }}</a>
+    <router-link :to="link">{{ name }}</router-link>
   </li>
 </template>
 
@@ -8,7 +8,7 @@
 export default {
   name: "navbar-item",
   props: {
-    title: {
+    name: {
       required: true,
       type: String
     },

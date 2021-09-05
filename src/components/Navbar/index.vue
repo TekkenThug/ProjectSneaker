@@ -13,20 +13,13 @@ import NavbarList from "./navbar-list"
 export default {
   name: "Navbar",
   components: { NavbarList },
-  data() {
-    return {
-      routes: [
-        {
-          title: "News",
-          link: "/news"
-        },
-        {
-          title: "Wiki",
-          link: "/wiki"
-        },
-      ]
+
+  props: {
+    routes: {
+      type: Array,
+      required: true,
     }
-  }
+  },
 }
 </script>
 

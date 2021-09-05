@@ -3,7 +3,7 @@
     <navbar-item
         v-for="route in routes"
         :key="route.link"
-        :title="route.title"
+        :name="route.name"
         :link="route.link"
     />
   </ul>
