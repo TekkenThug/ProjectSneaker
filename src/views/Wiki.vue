@@ -8,14 +8,11 @@
         class="start__search"
         placeholder="Какие кроссовки интересуют?"
         :icon="searchIcon"
-        v-model="searchValue"
+        v-model="searchData.value"
+        @input="callAPI"
     />
     <div class="start__results">
-      <sneaker-card
-          v-for="pair in resultSneaker"
-          :key="pair.vendorCode"
-          :product-info="pair"
-      />
+      <preloader v-if="searchData.loading" />
     </div>
   </div>
 </template>
@@ -24,11 +21,10 @@
 import sneakers from "@/mock/sneakers";
 
 import SearchField from "@/components/UI/Input";
-import SneakerCard from "@/components/Card";
 
 export default {
   name: "Wiki",
-  components: { SearchField, SneakerCard },
+  components: { SearchField },
 
   data() {
     return {
@@ -38,8 +34,26 @@ export default {
         name: 'search'
       },
 
-      searchValue: '',
-      resultSneaker: sneakers
+      searchData: {
+        searchValue: '',
+        loading: false,
+        result: sneakers
+      }
+    }
+  },
+
+  methods: {
+    callAPI() {
+      if (!this.searchData.loading) {
+        this.searchData.loading = true;
+
+        console.log('send request >>>');
+        setTimeout(() => {
+          console.log('Complete!');
+
+          this.searchData.loading = false;
+        }, 2000)
+      }
     }
   }
 }
