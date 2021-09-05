@@ -7,6 +7,12 @@ Vue.use(VueRouter)
 
 const routes = [
   {
+    path: '/',
+    redirect: {
+      name: 'Wiki'
+    }
+  },
+  {
     path: '/wiki',
     name: 'Wiki',
     component: Wiki
