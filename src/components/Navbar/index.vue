@@ -35,11 +35,17 @@ export default {
     padding: 15px 30px;
     display: flex;
     justify-content: space-between;
-    align-items: center;
-    border-bottom: 3px solid $orange;
+    align-items: flex-end;
+    background-color: $orange;
 
     &__logo {
       max-width: 120px;
+      padding-bottom: 5px;
+    }
+
+    &__list {
+      font-weight: 900;
+      text-transform: uppercase;
     }
   }
 </style>
