@@ -2,7 +2,7 @@
   <div class="start">
     <h1 class="start__title">Откройте для себя мир сникеров</h1>
     <p class="start__subtitle">
-      Смотрите, создавайте и изучайте историю кроссовок вместе с нами
+      Найдите ту пару, которая вам нужна!
     </p>
     <search-field
         class="start__search"
@@ -11,9 +11,17 @@
         v-model="searchData.value"
         @input="callAPI"
     />
-    <div class="start__results">
-      <preloader v-if="searchData.loading" />
-    </div>
+    <!--    <div class="start__results">-->
+    <!--      <preloader v-if="searchData.loading" />-->
+    <!--    </div>-->
+    <p class="start__subtitle">
+      Не нашли нужную, хотя знаете, что она существует? Добавьте её!
+    </p>
+    <btn
+        class="start__add-btn"
+        :title="addBtn.title"
+        :icon="addBtn.icon"
+    />
   </div>
 </template>
 
@@ -21,10 +29,11 @@
 import sneakers from "@/mock/sneakers";
 
 import SearchField from "@/components/UI/Input";
+import Btn from "@/components/UI/Button";
 
 export default {
   name: "Wiki",
-  components: { SearchField },
+  components: { SearchField, Btn },
 
   data() {
     return {
@@ -38,6 +47,15 @@ export default {
         searchValue: '',
         loading: false,
         result: sneakers
+      },
+
+      addBtn: {
+        title: 'Добавить пару',
+        icon: {
+          name: 'plus',
+          width: 18,
+          height: 18,
+        }
       }
     }
   },
@@ -61,7 +79,10 @@ export default {
 
 <style lang="scss" scoped>
   .start {
-    padding: 40px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
     text-align: center;
 
     &__title {
@@ -72,10 +93,12 @@ export default {
 
     &__subtitle {
       color: rgba($gray, .8);
+      max-width: 300px;
     }
 
     &__search {
-      max-width: 500px;
+      max-width: 320px;
+      width: 100%;
       margin: 35px auto;
 
       .svg-icon--search {
@@ -87,6 +110,10 @@ export default {
     &__results {
       max-width: 500px;
       margin: 0 auto;
+    }
+
+    &__add-btn {
+      margin-top: 20px;
     }
   }
 </style>
