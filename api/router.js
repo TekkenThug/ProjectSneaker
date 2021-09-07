@@ -1,7 +1,16 @@
 const express = require('express')
 const router = express.Router()
 
-router.get('/sneakers', function (req, res) {
+/**
+ * TODO:
+ * Resolve env variables for set right CORS policy
+ */
+router.use((req, res, next) => {
+    res.header('Access-Control-Allow-Origin', 'http://localhost:8080');
+    next();
+});
+
+router.get('/api/sneakers', function (req, res) {
     res.status(200).send([
         {
             image: '/images/tmp-sneaker.jpeg',
