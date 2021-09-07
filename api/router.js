@@ -1,12 +1,9 @@
+require('dotenv').config();
 const express = require('express')
 const router = express.Router()
 
-/**
- * TODO:
- * Resolve env variables for set right CORS policy
- */
 router.use((req, res, next) => {
-    res.header('Access-Control-Allow-Origin', 'http://localhost:8080');
+    res.header('Access-Control-Allow-Origin', process.env.APP_URL);
     next();
 });
 
