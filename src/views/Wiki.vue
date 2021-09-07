@@ -9,7 +9,6 @@
         placeholder="Какие кроссовки интересуют?"
         :icon="searchIcon"
         v-model="searchData.value"
-        @input="callAPI"
     />
     <!--    <div class="start__results">-->
     <!--      <preloader v-if="searchData.loading" />-->
@@ -60,19 +59,8 @@ export default {
     }
   },
 
-  methods: {
-    callAPI() {
-      if (!this.searchData.loading) {
-        this.searchData.loading = true;
-
-        console.log('send request >>>');
-        setTimeout(() => {
-          console.log('Complete!');
-
-          this.searchData.loading = false;
-        }, 2000)
-      }
-    }
+  created() {
+    this.$api.getSneakers();
   }
 }
 </script>
