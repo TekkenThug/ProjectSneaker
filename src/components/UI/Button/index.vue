@@ -20,9 +20,13 @@ export default {
   components: { Icon },
   props: {
     icon: {
+      default() {
+        return {};
+      },
       type: Object,
     },
     title: {
+      default: '',
       type: String,
     },
   },

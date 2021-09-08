@@ -36,6 +36,7 @@ export default {
 
   props: {
     value: {
+      type: String,
       default: '',
     },
     placeholder: {
@@ -44,6 +45,9 @@ export default {
     },
     icon: {
       type: Object,
+      default() {
+        return {};
+      },
     },
   },
 };
