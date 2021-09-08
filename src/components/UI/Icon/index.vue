@@ -4,6 +4,7 @@
     :width="iconData.width"
     :height="iconData.height"
     xmlns="http://www.w3.org/2000/svg"
+    class="svg-icon"
   >
     <title v-if="iconData.title">{{ title }}</title>
     <use
@@ -36,7 +37,7 @@ export default {
     },
 
     className() {
-      return `svg-icon svg-icon--${this.iconData.name}`;
+      return `svg-icon--${this.iconData.name}`;
     },
   },
 };
