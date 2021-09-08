@@ -1,12 +1,12 @@
 <template>
   <button
-      class="ui-btn"
-      @click="$emit('click')"
+    class="ui-btn"
+    @click="$emit('click')"
   >
     <icon
-        class="ui-btn__icon"
-        v-if="icon"
-        :icon-data="icon"
+      class="ui-btn__icon"
+      v-if="icon"
+      :icon-data="icon"
     />
     {{ title }}
   </button>

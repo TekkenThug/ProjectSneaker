@@ -1,10 +1,10 @@
 <template>
   <ul class="navbar__list">
     <navbar-item
-        v-for="route in routes"
-        :key="route.link"
-        :name="route.name"
-        :link="route.link"
+      v-for="route in routes"
+      :key="route.link"
+      :name="route.name"
+      :link="route.link"
     />
   </ul>
 </template>
@@ -13,7 +13,7 @@
 import NavbarItem from './navbar-item';
 
 export default {
-  name: 'navbar-list',
+  name: 'NavbarList',
   components: { NavbarItem },
   props: {
     routes: {

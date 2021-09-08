@@ -1,9 +1,9 @@
 <template>
   <div
-      class="card"
-      :style="{
-        backgroundImage: `url(${productInfo.image})`
-      }"
+    class="card"
+    :style="{
+      backgroundImage: `url(${productInfo.image})`
+    }"
   >
     <div class="card__info">
       <h3 class="card__title">
