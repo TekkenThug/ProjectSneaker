@@ -22,31 +22,31 @@
 </template>
 
 <script>
-import Icon from "@/components/UI/Icon";
+import Icon from '@/components/UI/Icon';
 
 export default {
-  name: "index",
+  name: 'index',
   components: { Icon },
 
   data() {
     return {
       focus: false,
-    }
+    };
   },
 
   props: {
     value: {
-      default: ''
+      default: '',
     },
     placeholder: {
       type: String,
-      default: ''
+      default: '',
     },
     icon: {
       type: Object,
-    }
+    },
   },
-}
+};
 </script>
 
 <style lang="scss" scoped>

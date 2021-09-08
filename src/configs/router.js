@@ -1,6 +1,6 @@
-export const routesList = [
-    {
-        name: 'Wiki',
-        link: '/wiki'
-    },
-]
+export default [
+  {
+    name: 'Wiki',
+    link: '/wiki',
+  },
+];

@@ -8,19 +8,19 @@
 </template>
 
 <script>
-import NavbarList from "./navbar-list"
+import NavbarList from './navbar-list';
 
 export default {
-  name: "Navbar",
+  name: 'Navbar',
   components: { NavbarList },
 
   props: {
     routes: {
       type: Array,
       required: true,
-    }
+    },
   },
-}
+};
 </script>
 
 <style lang="scss" scoped>

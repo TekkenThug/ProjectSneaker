@@ -8,9 +8,9 @@
 </template>
 
 <script>
-import {routesList} from "@/configs/router";
+import routesList from '@/configs/router';
 
-import Navbar from "@/components/Navbar";
+import Navbar from '@/components/Navbar';
 
 export default {
   name: 'App',
@@ -18,10 +18,10 @@ export default {
 
   data() {
     return {
-      routes: routesList
-    }
-  }
-}
+      routes: routesList,
+    };
+  },
+};
 </script>
 
 <style lang="scss" scoped>

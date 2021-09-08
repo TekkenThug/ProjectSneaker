@@ -21,7 +21,7 @@
 
 <script>
 export default {
-  name: "Card",
+  name: 'Card',
 
   props: {
     productInfo: {
@@ -31,12 +31,12 @@ export default {
           image: '',
           name: '',
           vendorCode: '',
-          averagePrice: 0
-        }
-      }
-    }
-  }
-}
+          averagePrice: 0,
+        };
+      },
+    },
+  },
+};
 </script>
 
 <style lang="scss" scoped>
@@ -84,7 +84,6 @@ export default {
       text-transform: uppercase;
       margin-bottom: 20px;
     }
-
 
     &:hover {
       &::before {

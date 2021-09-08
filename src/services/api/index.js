@@ -1,5 +1,5 @@
-import { getSneakers } from "./sneakers";
+import getSneakers from './sneakers';
 
 export default {
-    getSneakers: getSneakers
-}
+  getSneakers,
+};

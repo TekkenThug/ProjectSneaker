@@ -6,18 +6,18 @@
 
 <script>
 export default {
-  name: "navbar-item",
+  name: 'navbar-item',
   props: {
     name: {
       required: true,
-      type: String
+      type: String,
     },
     link: {
       required: true,
-      type: String
-    }
-  }
-}
+      type: String,
+    },
+  },
+};
 </script>
 
 <style lang="scss" scoped>

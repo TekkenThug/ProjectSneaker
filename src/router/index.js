@@ -1,15 +1,15 @@
-import Vue from 'vue'
-import VueRouter from 'vue-router'
+import Vue from 'vue';
+import VueRouter from 'vue-router';
 
-import Wiki from "@/views/Wiki";
+import Wiki from '@/views/Wiki';
 
-Vue.use(VueRouter)
+Vue.use(VueRouter);
 
 const routes = [
   {
     path: '/',
     redirect: {
-      name: 'Wiki'
+      name: 'Wiki',
     },
   },
   {
@@ -17,22 +17,22 @@ const routes = [
     name: 'Wiki',
     component: Wiki,
     meta: {
-      title: 'Wiki'
-    }
+      title: 'Wiki',
+    },
   },
-]
+];
 
 const router = new VueRouter({
   mode: 'history',
   base: process.env.BASE_URL,
-  routes
+  routes,
 });
 
-const generateTitle = (title) => `ProjectSneaker_${title}`
+const generateTitle = (title) => `ProjectSneaker_${title}`;
 
 router.beforeEach((to, from, next) => {
   document.title = generateTitle(to.meta.title);
-  next()
-})
+  next();
+});
 
-export default router
+export default router;

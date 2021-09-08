@@ -32,9 +32,9 @@ export default {
     },
 
     className() {
-      return 'svg-icon svg-icon--' + this.iconData.name;
-    }
-  }
+      return `svg-icon svg-icon--${this.iconData.name}`;
+    },
+  },
 };
 </script>
 

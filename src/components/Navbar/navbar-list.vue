@@ -13,15 +13,15 @@
 import NavbarItem from './navbar-item';
 
 export default {
-  name: "navbar-list",
+  name: 'navbar-list',
   components: { NavbarItem },
   props: {
     routes: {
       required: true,
-      type: Array
-    }
-  }
-}
+      type: Array,
+    },
+  },
+};
 </script>
 
 <style lang="scss" scoped>

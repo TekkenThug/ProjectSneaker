@@ -13,10 +13,10 @@
 </template>
 
 <script>
-import Icon from "@/components/UI/Icon";
+import Icon from '@/components/UI/Icon';
 
 export default {
-  name: "Btn",
+  name: 'Btn',
   components: { Icon },
   props: {
     icon: {
@@ -24,9 +24,9 @@ export default {
     },
     title: {
       type: String,
-    }
-  }
-}
+    },
+  },
+};
 </script>
 
 <style lang="scss" scoped>
