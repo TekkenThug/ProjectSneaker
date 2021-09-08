@@ -6,7 +6,8 @@
   "extends": [
     "plugin:import/recommended",
     "airbnb-base",
-    "plugin:vue/strongly-recommended"
+    "plugin:vue/strongly-recommended",
+    "plugin:jsdoc/recommended"
   ],
   "parserOptions": {
     "parser": "babel-eslint"
