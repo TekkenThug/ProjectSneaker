@@ -1,32 +1,36 @@
 <template>
   <button
-      class="ui-btn"
-      @click="$emit('click')"
+    class="ui-btn"
+    @click="$emit('click')"
   >
     <icon
-        class="ui-btn__icon"
-        v-if="icon"
-        :icon-data="icon"
+      class="ui-btn__icon"
+      v-if="icon"
+      :icon-data="icon"
     />
     {{ title }}
   </button>
 </template>
 
 <script>
-import Icon from "@/components/UI/Icon";
+import Icon from '@/components/UI/Icon';
 
 export default {
-  name: "Btn",
+  name: 'Btn',
   components: { Icon },
   props: {
     icon: {
+      default() {
+        return {};
+      },
       type: Object,
     },
     title: {
+      default: '',
       type: String,
-    }
-  }
-}
+    },
+  },
+};
 </script>
 
 <style lang="scss" scoped>

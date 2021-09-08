@@ -1,8 +1,10 @@
-import nodeAPI from "@/configs/axios";
+import nodeAPI from '@/configs/axios';
 
-export function getSneakers() {
-    return nodeAPI.get('/sneakers')
-        .then(res => {
-            console.log(res);
-        });
+/**
+ * Get list of sneakers
+ *
+ * @returns {Promise} List of sneakers
+ */
+export default function getSneakers() {
+  return nodeAPI.get('/sneakers');
 }

@@ -1,14 +1,16 @@
 <template>
   <div class="start">
-    <h1 class="start__title">Откройте для себя мир сникеров</h1>
+    <h1 class="start__title">
+      Откройте для себя мир сникеров
+    </h1>
     <p class="start__subtitle">
       Найдите ту пару, которая вам нужна!
     </p>
     <search-field
-        class="start__search"
-        placeholder="Какие кроссовки интересуют?"
-        :icon="searchIcon"
-        v-model="searchData.value"
+      class="start__search"
+      placeholder="Какие кроссовки интересуют?"
+      :icon="searchIcon"
+      v-model="searchData.value"
     />
     <!--    <div class="start__results">-->
     <!--      <preloader v-if="searchData.loading" />-->
@@ -17,21 +19,21 @@
       Не нашли нужную, хотя знаете, что она существует? Добавьте её!
     </p>
     <btn
-        class="start__add-btn"
-        :title="addBtn.title"
-        :icon="addBtn.icon"
+      class="start__add-btn"
+      :title="addBtn.title"
+      :icon="addBtn.icon"
     />
   </div>
 </template>
 
 <script>
-import sneakers from "@/mock/sneakers";
+import sneakers from '@/mock/sneakers';
 
-import SearchField from "@/components/UI/Input";
-import Btn from "@/components/UI/Button";
+import SearchField from '@/components/UI/Input';
+import Btn from '@/components/UI/Button';
 
 export default {
-  name: "Wiki",
+  name: 'Wiki',
   components: { SearchField, Btn },
 
   data() {
@@ -39,13 +41,13 @@ export default {
       searchIcon: {
         width: 18,
         height: 18,
-        name: 'search'
+        name: 'search',
       },
 
       searchData: {
         searchValue: '',
         loading: false,
-        result: sneakers
+        result: sneakers,
       },
 
       addBtn: {
@@ -54,15 +56,15 @@ export default {
           name: 'plus',
           width: 18,
           height: 18,
-        }
-      }
-    }
+        },
+      },
+    };
   },
 
   created() {
     this.$api.getSneakers();
-  }
-}
+  },
+};
 </script>
 
 <style lang="scss" scoped>

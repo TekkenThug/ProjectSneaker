@@ -1,52 +1,56 @@
 <template>
   <div
-      class="ui-input"
-      :class="{
-        'ui-input--focused': focus
-      }"
+    class="ui-input"
+    :class="{
+      'ui-input--focused': focus
+    }"
   >
     <icon
-        class="ui-input__icon"
-        v-if="icon"
-        :icon-data="icon"
+      class="ui-input__icon"
+      v-if="icon"
+      :icon-data="icon"
     />
     <input
-        :value="value"
-        :placeholder="placeholder"
-        @input="$emit('input', $event.target.value)"
-        @focusin="focus = true"
-        @focusout="focus = false"
-        type="text"
+      :value="value"
+      :placeholder="placeholder"
+      @input="$emit('input', $event.target.value)"
+      @focusin="focus = true"
+      @focusout="focus = false"
+      type="text"
     >
   </div>
 </template>
 
 <script>
-import Icon from "@/components/UI/Icon";
+import Icon from '@/components/UI/Icon';
 
 export default {
-  name: "index",
+  name: 'Index',
   components: { Icon },
 
   data() {
     return {
       focus: false,
-    }
+    };
   },
 
   props: {
     value: {
-      default: ''
+      type: String,
+      default: '',
     },
     placeholder: {
       type: String,
-      default: ''
+      default: '',
     },
     icon: {
       type: Object,
-    }
+      default() {
+        return {};
+      },
+    },
   },
-}
+};
 </script>
 
 <style lang="scss" scoped>

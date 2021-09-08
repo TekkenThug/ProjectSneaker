@@ -1,23 +1,25 @@
 <template>
   <li class="navbar__item">
-    <router-link :to="link">{{ name }}</router-link>
+    <router-link :to="link">
+      {{ name }}
+    </router-link>
   </li>
 </template>
 
 <script>
 export default {
-  name: "navbar-item",
+  name: 'NavbarItem',
   props: {
     name: {
       required: true,
-      type: String
+      type: String,
     },
     link: {
       required: true,
-      type: String
-    }
-  }
-}
+      type: String,
+    },
+  },
+};
 </script>
 
 <style lang="scss" scoped>

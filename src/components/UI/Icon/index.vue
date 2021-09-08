@@ -1,18 +1,22 @@
 <template>
   <svg
-      :class="className"
-      :width="iconData.width"
-      :height="iconData.height"
-      xmlns="http://www.w3.org/2000/svg"
+    :class="className"
+    :width="iconData.width"
+    :height="iconData.height"
+    xmlns="http://www.w3.org/2000/svg"
+    class="svg-icon"
   >
     <title v-if="iconData.title">{{ title }}</title>
-    <use :xlink:href="iconPath" xmlns:xlink="http://www.w3.org/1999/xlink"/>
+    <use
+      :xlink:href="iconPath"
+      xmlns:xlink="http://www.w3.org/1999/xlink"
+    />
   </svg>
 </template>
 
 <script>
 export default {
-  name: 'svg-icon',
+  name: 'SvgIcon',
 
   props: {
     iconData: {
@@ -23,6 +27,7 @@ export default {
 
   computed: {
     iconPath() {
+      // eslint-disable-next-line global-require,import/no-dynamic-require
       let icon = require(`@/assets/icons/${this.iconData.name}.svg`);
       if (Object.prototype.hasOwnProperty.call(icon, 'default')) {
         icon = icon.default;
@@ -32,9 +37,9 @@ export default {
     },
 
     className() {
-      return 'svg-icon svg-icon--' + this.iconData.name;
-    }
-  }
+      return `svg-icon--${this.iconData.name}`;
+    },
+  },
 };
 </script>
 
