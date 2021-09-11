@@ -29,7 +29,7 @@
       Не нашли нужную, хотя знаете, что она существует? Добавьте её!
     </p>
     <btn
-      @click="showAddScreen = true"
+      @click="goToCreatePage"
       class="search__add-btn"
       :title="addBtn.title"
       :icon="addBtn.icon"
@@ -72,6 +72,12 @@ export default {
         },
       },
     };
+  },
+
+  methods: {
+    goToCreatePage() {
+      this.$router.push({ name: 'wikiCreate' });
+    },
   },
 };
 </script>
