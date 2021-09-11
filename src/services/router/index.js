@@ -1,7 +1,7 @@
 import Vue from 'vue';
 import VueRouter from 'vue-router';
 
-import Wiki from '@/views/Wiki';
+import Wiki from '@/views/Wiki/Wiki';
 
 Vue.use(VueRouter);
 
