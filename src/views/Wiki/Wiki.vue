@@ -16,9 +16,6 @@
         :icon="searchIcon"
         v-model="searchData.value"
       />
-      <!--    <div class="start__results">-->
-      <!--      <preloader v-if="searchData.loading" />-->
-      <!--    </div>-->
       <p class="start__subtitle">
         Не нашли нужную, хотя знаете, что она существует? Добавьте её!
       </p>
