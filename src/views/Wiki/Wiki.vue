@@ -1,39 +1,12 @@
 <template>
-  <div class="start">
-    <div
-      class="start__screen"
-    >
-      <router-view />
-    </div>
+  <div class="wiki">
+    <router-view />
   </div>
 </template>
 
 <script>
 export default {
   name: 'Wiki',
-  data() {
-    return {
-      sneakerAddFields: [
-        {
-          name: 'Название',
-          value: '',
-        },
-        {
-          name: 'Расцветка',
-          value: '',
-        },
-        {
-          name: 'Артикул',
-          value: '',
-        },
-        {
-          name: 'Дата релиза',
-          value: '',
-          type: 'date',
-        },
-      ],
-    };
-  },
   methods: {
     postSneakers(data) {
       this.$api.postSneakers(data);
@@ -43,56 +16,12 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-  .start {
+  .wiki {
     text-align: center;
     max-width: 960px;
     width: 100%;
-
-    &__screen {
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-    }
-
-    &__title {
-      font-size: 36px;
-      font-weight: 700;
-      margin-bottom: 20px;
-    }
-
-    &__subtitle {
-      color: rgba($color-3, .8);
-      max-width: 300px;
-    }
-
-    &__search {
-      max-width: 320px;
-      width: 100%;
-      margin: 35px auto;
-    }
-
-    &__results {
-      max-width: 500px;
-      margin: 0 auto;
-    }
-
-    &__add-btn {
-      margin-top: 20px;
-    }
-
-    &__add-form {
-      max-width: 480px;
-
-      &::v-deep .add-form__field {
-        flex: 0 0 48%;
-        margin-bottom: 10px;
-
-        &:nth-child(2n) {
-          margin-left: 10px;
-        }
-      }
-    }
+    display: flex;
+    justify-content: center;
   }
 
   @media (max-width: $mobile) {

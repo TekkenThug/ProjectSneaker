@@ -1,23 +1,22 @@
 <template>
   <div
-    class="start__screen"
+    class="search"
   >
-    <h1 class="start__title">
+    <h1 class="search__title">
       Откройте для себя мир сникеров
     </h1>
-    <p class="start__subtitle">
+    <p class="search__subtitle">
       Найдите ту пару, которая вам нужна!
     </p>
     <search-field
-      class="start__search"
+      class="search__field"
       placeholder="Какие кроссовки интересуют?"
       :icon="searchIcon"
       v-model="searchData.value"
-      @input="searchSneakers"
     />
     <preloader v-if="searchData.loading" />
     <div
-      class="start__result"
+      class="search__result"
       v-if="!searchData.loading"
     >
       <sneaker-card
@@ -26,12 +25,12 @@
         :product-info="pair"
       />
     </div>
-    <p class="start__subtitle">
+    <p class="search__subtitle">
       Не нашли нужную, хотя знаете, что она существует? Добавьте её!
     </p>
     <btn
       @click="showAddScreen = true"
-      class="start__add-btn"
+      class="search__add-btn"
       :title="addBtn.title"
       :icon="addBtn.icon"
     />
@@ -77,6 +76,36 @@ export default {
 };
 </script>
 
-<style scoped>
+<style lang="scss" scoped>
+  .search {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    &__title {
+      font-size: 36px;
+      font-weight: 700;
+      margin-bottom: 20px;
+    }
 
+    &__subtitle {
+      color: rgba($color-3, .8);
+      max-width: 300px;
+    }
+
+    &__field {
+      max-width: 320px;
+      width: 100%;
+      margin: 35px auto;
+    }
+
+    &__results {
+      max-width: 500px;
+      margin: 0 auto;
+    }
+
+    &__add-btn {
+      margin-top: 20px;
+    }
+  }
 </style>

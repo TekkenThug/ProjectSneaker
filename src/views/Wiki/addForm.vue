@@ -42,7 +42,7 @@ export default {
   props: {
     title: {
       type: String,
-      default: '',
+      default: 'Добавление кроссовок',
     },
     subtitle: {
       type: String,
@@ -50,16 +50,28 @@ export default {
         После отправки, заявка на добавление будет рассмотрена модераторами
       `,
     },
-    sneakerInitialFields: {
-      type: Array,
-      default() {
-        return [];
-      },
-    },
   },
   data() {
     return {
-      sneakerDraft: this.sneakerInitialFields,
+      sneakerDraft: [
+        {
+          name: 'Название',
+          value: '',
+        },
+        {
+          name: 'Расцветка',
+          value: '',
+        },
+        {
+          name: 'Артикул',
+          value: '',
+        },
+        {
+          name: 'Дата релиза',
+          value: '',
+          type: 'date',
+        },
+      ],
     };
   },
   methods: {
@@ -77,6 +89,7 @@ export default {
 <style lang="scss" scoped>
   .add-form {
     width: 100%;
+    max-width: 480px;
     border-radius: 7px;
     padding: 20px;
     background-color: $color-1;
@@ -100,6 +113,15 @@ export default {
     &__fields {
       display: flex;
       flex-wrap: wrap;
+    }
+
+    &__field {
+      flex: 0 0 48%;
+      margin-bottom: 10px;
+
+      &:nth-child(2n) {
+        margin-left: 10px;
+      }
     }
 
     &__submit {
