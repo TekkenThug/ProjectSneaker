@@ -87,6 +87,10 @@ export default {
     width: 100%;
     max-width: $alertWidth;
 
+    .svg-icon {
+      flex-shrink: 0;
+    }
+
     &--info {
       .alert__title,
       .svg-icon {
