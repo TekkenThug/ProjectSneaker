@@ -34,18 +34,4 @@ export default {
       transform: translateX(-50px);
     }
   }
-
-  @media (max-width: $mobile) {
-    .start {
-      &__add-form {
-        &::v-deep .add-form__field {
-          flex: 0 0 100%;
-
-          &:nth-child(2n) {
-            margin-left: 0;
-          }
-        }
-      }
-    }
-  }
 </style>

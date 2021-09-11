@@ -128,4 +128,14 @@ export default {
       margin: 15px auto 0;
     }
   }
+
+  @media (max-width: $mobile) {
+    .add-form__field {
+      flex: 0 0 100%;
+
+      &:nth-child(2n) {
+        margin-left: 0;
+      }
+    }
+  }
 </style>
