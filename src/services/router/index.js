@@ -17,6 +17,9 @@ const routes = [
     path: '/wiki',
     name: 'Wiki',
     component: Wiki,
+    redirect: {
+      name: 'wikiSearch',
+    },
     meta: {
       title: 'Wiki',
     },
