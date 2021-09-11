@@ -2,8 +2,7 @@ import Vue from 'vue';
 import VueRouter from 'vue-router';
 
 import Wiki from '@/views/Wiki/Wiki';
-import AddForm from '@/views/Wiki/addForm';
-import Search from '@/views/Wiki/search';
+import wikiRoutes from './wiki';
 
 Vue.use(VueRouter);
 
@@ -21,22 +20,7 @@ const routes = [
     meta: {
       title: 'Wiki',
     },
-    children: [
-      {
-        path: 'create',
-        component: AddForm,
-        meta: {
-          title: 'CreatePair',
-        },
-      },
-      {
-        path: 'search',
-        component: Search,
-        meta: {
-          title: 'Search',
-        },
-      },
-    ],
+    children: wikiRoutes,
   },
 ];
 
