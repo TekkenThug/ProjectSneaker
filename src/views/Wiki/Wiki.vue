@@ -101,11 +101,6 @@ export default {
       showAddScreen: false,
     };
   },
-
-  created() {
-    this.$api.getSneakers();
-  },
-
   methods: {
     postSneakers(data) {
       this.$api.postSneakers(data);
