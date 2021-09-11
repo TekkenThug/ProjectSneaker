@@ -3,7 +3,7 @@ import App from './App.vue';
 import './styles/tailwind.scss';
 
 /** Vue tools */
-import router from './router';
+import router from './services/router';
 
 /** Plugins */
 import apiPlugin from '@/plugins/apiPlugin';
