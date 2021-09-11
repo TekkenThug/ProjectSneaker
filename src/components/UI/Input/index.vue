@@ -16,7 +16,7 @@
       @input="$emit('input', $event.target.value)"
       @focusin="focus = true"
       @focusout="focus = false"
-      type="text"
+      :type="type"
     >
   </div>
 </template>
@@ -35,6 +35,10 @@ export default {
   },
 
   props: {
+    type: {
+      type: String,
+      default: 'text',
+    },
     value: {
       type: String,
       default: '',
