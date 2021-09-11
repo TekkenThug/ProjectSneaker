@@ -5,7 +5,7 @@
   >
     <icon
       class="ui-btn__icon"
-      v-if="icon"
+      v-if="Object.keys(icon).length"
       :icon-data="icon"
     />
     {{ title }}
