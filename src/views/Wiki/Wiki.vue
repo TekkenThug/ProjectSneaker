@@ -15,7 +15,19 @@
         placeholder="Какие кроссовки интересуют?"
         :icon="searchIcon"
         v-model="searchData.value"
+        @input="searchSneakers"
       />
+      <preloader v-if="searchData.loading" />
+      <div
+        class="start__result"
+        v-if="!searchData.loading"
+      >
+        <sneaker-card
+          v-for="(pair, index) in searchData.result"
+          :key="index"
+          :product-info="pair"
+        />
+      </div>
       <p class="start__subtitle">
         Не нашли нужную, хотя знаете, что она существует? Добавьте её!
       </p>
@@ -45,6 +57,7 @@
 import sneakers from '@/mock/sneakers';
 
 import SearchField from '@/components/UI/Input';
+import SneakerCard from '@/components/Card';
 import Btn from '@/components/UI/Button';
 import AddForm from './addForm';
 
@@ -54,9 +67,12 @@ export default {
     SearchField,
     Btn,
     AddForm,
+    SneakerCard,
   },
   data() {
     return {
+      allSneakers: sneakers,
+
       searchIcon: {
         width: 18,
         height: 18,
@@ -66,7 +82,7 @@ export default {
       searchData: {
         searchValue: '',
         loading: false,
-        result: sneakers,
+        result: null,
       },
 
       sneakerAddFields: [
@@ -104,6 +120,20 @@ export default {
   methods: {
     postSneakers(data) {
       this.$api.postSneakers(data);
+    },
+
+    searchSneakers(data) {
+      if (!this.searchData.loading) {
+        this.searchData.loading = true;
+
+        setTimeout(() => {
+          this.searchData.result = this.allSneakers.filter((pair) => {
+            return pair.name.includes(data) || pair.vendorCode.includes(data);
+          });
+
+          this.searchData.loading = false;
+        }, 3000);
+      }
     },
   },
 };
