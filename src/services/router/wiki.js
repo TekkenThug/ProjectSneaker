@@ -1,5 +1,5 @@
-import AddForm from '@/views/Wiki/addForm';
-import Search from '@/views/Wiki/search';
+import AddForm from '@/views/Wiki/subviews/Create';
+import Search from '@/views/Wiki/subviews/Search';
 
 export default [
   {
