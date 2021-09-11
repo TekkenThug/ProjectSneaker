@@ -42,6 +42,9 @@ export default {
     border-radius: 7px;
     color: $color-1;
     font-weight: 700;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 
     &__icon {
       margin-right: 8px;
