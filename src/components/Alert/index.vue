@@ -151,4 +151,12 @@ export default {
     opacity: 0;
     transform: translateX(-50px);
   }
+
+  @media (max-width: $mobileXS) {
+    .alert {
+      left: 20px;
+      max-width: none;
+      width: auto;
+    }
+  }
 </style>
