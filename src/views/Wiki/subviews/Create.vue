@@ -1,8 +1,12 @@
 <template>
   <form
     class="add-form"
-    @submit.prevent="serialize"
+    @submit.prevent="postSneakers"
   >
+    <preloader
+      v-if="load"
+      class="add-form__load"
+    />
     <h3
       v-show="title"
       class="add-form__title"
@@ -39,20 +43,11 @@ import SubmitBtn from '@/components/UI/Button';
 export default {
   name: 'AddForm',
   components: { inputField, SubmitBtn },
-  props: {
-    title: {
-      type: String,
-      default: 'Добавление кроссовок',
-    },
-    subtitle: {
-      type: String,
-      default: `
-        После отправки, заявка на добавление будет рассмотрена модераторами
-      `,
-    },
-  },
   data() {
     return {
+      title: 'Добавление кроссовок',
+      subtitle: 'После отправки, заявка на добавление будет рассмотрена модераторами',
+      load: false,
       sneakerDraft: [
         {
           name: 'Название',
@@ -75,12 +70,19 @@ export default {
     };
   },
   methods: {
+    postSneakers() {
+      this.load = true;
+      setTimeout(() => {
+        this.$api.postSneakers(this.serialize());
+
+        this.load = false;
+      }, 2000);
+    },
+
     serialize() {
-      const serializeData = this.sneakerDraft.reduce((obj, { name, value }) => {
+      return this.sneakerDraft.reduce((obj, { name, value }) => {
         return Object.assign(obj, { [name]: value });
       }, {});
-
-      this.$emit('submit', serializeData);
     },
   },
 };
@@ -93,6 +95,19 @@ export default {
     border-radius: 7px;
     padding: 20px;
     background-color: $color-1;
+    position: relative;
+    overflow: hidden;
+
+    &__load {
+      position: absolute;
+      z-index: 10;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      align-items: center;
+      background-color: rgba($color-1, .8);
+    }
 
     &__title {
       font-size: 24px;
@@ -126,6 +141,7 @@ export default {
 
     &__submit {
       margin: 15px auto 0;
+      width: 100%;
     }
   }
 
