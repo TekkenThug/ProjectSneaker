@@ -7,13 +7,13 @@
   >
     <div class="card__info">
       <h3 class="card__title">
-        {{ productInfo.name }}
+        {{ productInfo.name }} / {{ productInfo.vendorCode }}
       </h3>
       <div class="card__vendor-code">
         Артикул: {{ productInfo.vendorCode }}
       </div>
       <div class="card__avrg-price">
-        Цена: {{ productInfo.averagePrice }}
+        Дата релиза: {{ productInfo.releaseDate }}
       </div>
     </div>
   </div>
