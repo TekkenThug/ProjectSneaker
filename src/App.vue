@@ -34,7 +34,7 @@ export default {
 
   .app-view {
     min-height: 100vh;
-    padding: 40px;
+    padding: ($navbarHeight + 40px) 40px 40px;
     flex-grow: 1;
     display: flex;
     justify-content: center;

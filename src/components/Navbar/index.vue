@@ -33,6 +33,8 @@ export default {
     justify-content: space-between;
     align-items: flex-end;
     background-color: $color-4;
+    z-index: 1000;
+    max-height: $navbarHeight;
 
     &__logo {
       max-width: 120px;
