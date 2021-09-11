@@ -9,11 +9,6 @@
 <script>
 export default {
   name: 'Wiki',
-  methods: {
-    postSneakers(data) {
-      this.$api.postSneakers(data);
-    },
-  },
 };
 </script>
 
