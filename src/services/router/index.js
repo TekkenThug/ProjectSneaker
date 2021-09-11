@@ -25,10 +25,16 @@ const routes = [
       {
         path: 'create',
         component: AddForm,
+        meta: {
+          title: 'CreatePair',
+        },
       },
       {
         path: 'search',
         component: Search,
+        meta: {
+          title: 'Search',
+        },
       },
     ],
   },
