@@ -1,6 +1,8 @@
 <template>
   <div class="wiki">
-    <router-view />
+    <transition name="slide">
+      <router-view />
+    </transition>
   </div>
 </template>
 
@@ -22,6 +24,15 @@ export default {
     width: 100%;
     display: flex;
     justify-content: center;
+
+    .slide-enter-active, .slide-leave-active {
+      transition: all .5s;
+    }
+    .slide-enter, .slide-leave-to {
+      position: absolute;
+      opacity: 0;
+      transform: translateX(-50px);
+    }
   }
 
   @media (max-width: $mobile) {
