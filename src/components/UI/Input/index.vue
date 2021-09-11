@@ -25,7 +25,7 @@
 import Icon from '@/components/UI/Icon';
 
 export default {
-  name: 'Index',
+  name: 'Input',
   components: { Icon },
 
   data() {
