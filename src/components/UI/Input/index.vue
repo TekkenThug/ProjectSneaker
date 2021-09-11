@@ -7,7 +7,7 @@
   >
     <icon
       class="ui-input__icon"
-      v-if="icon"
+      v-if="icon.length"
       :icon-data="icon"
     />
     <input
