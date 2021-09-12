@@ -74,9 +74,6 @@ export default {
 
 <style lang="scss" scoped>
   .alert {
-    position: fixed;
-    top: $navbarHeight + 40px;
-    right: 20px;
     padding: 10px 30px 10px 15px;
     border-radius: 5px;
     background-color: $color-1;
@@ -85,7 +82,7 @@ export default {
     align-items: flex-start;
     text-align: left;
     width: 100%;
-    max-width: $alertWidth;
+    position: relative;
 
     .svg-icon {
       flex-shrink: 0;
@@ -150,13 +147,5 @@ export default {
     position: absolute;
     opacity: 0;
     transform: translateX(-50px);
-  }
-
-  @media (max-width: $mobileXS) {
-    .alert {
-      left: 20px;
-      max-width: none;
-      width: auto;
-    }
   }
 </style>
