@@ -7,11 +7,13 @@ import router from './services/router';
 
 /** Plugins */
 import apiPlugin from '@/plugins/apiPlugin';
+import renderVuePlugin from '@/plugins/renderVuePlugin';
 
 /** Global components */
 import Preloader from '@/components/UI/_Preloader/Preloader';
 
 Vue.use(apiPlugin);
+Vue.use(renderVuePlugin);
 
 Vue.component('Preloader', Preloader);
 
