@@ -13,6 +13,7 @@
       placeholder="Какие кроссовки интересуют?"
       :icon="searchIcon"
       v-model="searchData.value"
+      @input="getSearchingSneakers"
     />
     <preloader v-if="searchData.loading" />
     <div
@@ -38,6 +39,8 @@
 </template>
 
 <script>
+import sneakers from '@/mock/sneakers';
+
 import SearchField from '@/components/UI/Input';
 import Btn from '@/components/UI/Button';
 import SneakerCard from '@/components/Card';
@@ -77,6 +80,18 @@ export default {
   methods: {
     goToCreatePage() {
       this.$router.push({ name: 'wikiCreate' });
+    },
+
+    getSearchingSneakers() {
+      if (!this.searchData.loading) {
+        this.searchData.loading = true;
+        this.searchData.result = null;
+
+        setTimeout(() => {
+          this.searchData.result = sneakers;
+          this.searchData.loading = false;
+        }, 2000);
+      }
     },
   },
 };
