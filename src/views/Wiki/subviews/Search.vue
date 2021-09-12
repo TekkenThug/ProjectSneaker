@@ -1,25 +1,37 @@
 <template>
-  <div class="start">
-    <h1 class="start__title">
+  <div
+    class="search"
+  >
+    <h1 class="search__title">
       Откройте для себя мир сникеров
     </h1>
-    <p class="start__subtitle">
+    <p class="search__subtitle">
       Найдите ту пару, которая вам нужна!
     </p>
     <search-field
-      class="start__search"
+      class="search__field"
       placeholder="Какие кроссовки интересуют?"
       :icon="searchIcon"
       v-model="searchData.value"
+      @input="getSearchingSneakers"
     />
-    <!--    <div class="start__results">-->
-    <!--      <preloader v-if="searchData.loading" />-->
-    <!--    </div>-->
-    <p class="start__subtitle">
+    <preloader v-if="searchData.loading" />
+    <div
+      class="search__result"
+      v-if="!searchData.loading"
+    >
+      <sneaker-card
+        v-for="(pair, index) in searchData.result"
+        :key="index"
+        :product-info="pair"
+      />
+    </div>
+    <p class="search__subtitle">
       Не нашли нужную, хотя знаете, что она существует? Добавьте её!
     </p>
     <btn
-      class="start__add-btn"
+      @click="goToCreatePage"
+      class="search__add-btn"
       :title="addBtn.title"
       :icon="addBtn.icon"
     />
@@ -31,11 +43,15 @@ import sneakers from '@/mock/sneakers';
 
 import SearchField from '@/components/UI/Input';
 import Btn from '@/components/UI/Button';
+import SneakerCard from '@/components/Card';
 
 export default {
-  name: 'Wiki',
-  components: { SearchField, Btn },
-
+  name: 'Search',
+  components: {
+    SearchField,
+    Btn,
+    SneakerCard,
+  },
   data() {
     return {
       searchIcon: {
@@ -47,7 +63,7 @@ export default {
       searchData: {
         searchValue: '',
         loading: false,
-        result: sneakers,
+        result: null,
       },
 
       addBtn: {
@@ -61,20 +77,32 @@ export default {
     };
   },
 
-  created() {
-    this.$api.getSneakers();
+  methods: {
+    goToCreatePage() {
+      this.$router.push({ name: 'wikiCreate' });
+    },
+
+    getSearchingSneakers() {
+      if (!this.searchData.loading) {
+        this.searchData.loading = true;
+        this.searchData.result = null;
+
+        setTimeout(() => {
+          this.searchData.result = sneakers;
+          this.searchData.loading = false;
+        }, 2000);
+      }
+    },
   },
 };
 </script>
 
 <style lang="scss" scoped>
-  .start {
+  .search {
     display: flex;
     flex-direction: column;
-    justify-content: center;
     align-items: center;
-    text-align: center;
-
+    justify-content: center;
     &__title {
       font-size: 36px;
       font-weight: 700;
@@ -86,15 +114,10 @@ export default {
       max-width: 300px;
     }
 
-    &__search {
+    &__field {
       max-width: 320px;
       width: 100%;
       margin: 35px auto;
-
-      .svg-icon--search {
-        fill: red;
-        color: red;
-      }
     }
 
     &__results {

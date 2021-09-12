@@ -15,6 +15,14 @@
 </template>
 
 <script>
+/**
+ * Data property for Icon
+ *
+ * @typedef {object} IconData
+ * @property {string|number} width - icon width
+ * @property {string|number} height - icon height
+ * @property {string} name - name in assets folder
+ */
 export default {
   name: 'SvgIcon',
 

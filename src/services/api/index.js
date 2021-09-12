@@ -1,5 +1,9 @@
-import getSneakers from './sneakers';
+import {
+  getSneakers,
+  postSneakers,
+} from './sneakers';
 
 export default {
   getSneakers,
+  postSneakers,
 };

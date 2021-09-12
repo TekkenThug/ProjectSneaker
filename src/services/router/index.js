@@ -1,7 +1,8 @@
 import Vue from 'vue';
 import VueRouter from 'vue-router';
 
-import Wiki from '@/views/Wiki';
+import Wiki from '@/views/Wiki/Wiki';
+import wikiRoutes from './wiki';
 
 Vue.use(VueRouter);
 
@@ -16,9 +17,13 @@ const routes = [
     path: '/wiki',
     name: 'Wiki',
     component: Wiki,
+    redirect: {
+      name: 'wikiSearch',
+    },
     meta: {
       title: 'Wiki',
     },
+    children: wikiRoutes,
   },
 ];
 

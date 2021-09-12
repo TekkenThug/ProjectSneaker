@@ -5,7 +5,7 @@
   >
     <icon
       class="ui-btn__icon"
-      v-if="icon"
+      v-if="Object.keys(icon).length"
       :icon-data="icon"
     />
     {{ title }}
@@ -44,6 +44,7 @@ export default {
     font-weight: 700;
     display: flex;
     align-items: center;
+    justify-content: center;
 
     &__icon {
       margin-right: 8px;
@@ -51,6 +52,10 @@ export default {
 
     &:hover {
       @include shadowUI;
+    }
+
+    &:active {
+      background-color: $color-4-1;
     }
   }
 </style>

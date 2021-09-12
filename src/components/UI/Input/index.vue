@@ -2,21 +2,22 @@
   <div
     class="ui-input"
     :class="{
-      'ui-input--focused': focus
+      'ui-input--focused': focus,
+      'ui-input--error': isError,
     }"
   >
     <icon
       class="ui-input__icon"
-      v-if="icon"
+      v-if="Object.keys(icon).length"
       :icon-data="icon"
     />
     <input
       :value="value"
       :placeholder="placeholder"
+      :type="type"
       @input="$emit('input', $event.target.value)"
       @focusin="focus = true"
       @focusout="focus = false"
-      type="text"
     >
   </div>
 </template>
@@ -25,7 +26,7 @@
 import Icon from '@/components/UI/Icon';
 
 export default {
-  name: 'Index',
+  name: 'Input',
   components: { Icon },
 
   data() {
@@ -35,6 +36,10 @@ export default {
   },
 
   props: {
+    type: {
+      type: String,
+      default: 'text',
+    },
     value: {
       type: String,
       default: '',
@@ -48,6 +53,16 @@ export default {
       default() {
         return {};
       },
+    },
+    error: {
+      type: Boolean,
+      default: false,
+    },
+  },
+
+  computed: {
+    isError() {
+      return this.error && !this.focus;
     },
   },
 };
@@ -71,7 +86,8 @@ export default {
       top: 0;
       bottom: 0;
       right: 0;
-      z-index: -1;
+      cursor: text;
+      pointer-events: none;
       border: 3px solid $color-4;
       border-radius: 7px;
       opacity: 0;
@@ -80,6 +96,14 @@ export default {
     &--focused {
       &::after {
         opacity: 1;
+      }
+    }
+
+    &--error {
+      &::after {
+        opacity: 1;
+        border-color: $alert_error;
+        background-color: rgba($alert_error, .3);
       }
     }
 
