@@ -4,13 +4,7 @@
     <div class="app-view">
       <router-view />
     </div>
-    <alert
-      msg-type="error"
-      title="Testing message"
-    >
-      Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquam cum, cumque cupiditate debitis dolore esse nam
-      nisi quia ratione sunt! Ipsa nemo non odit omnis possimus quae, saepe similique tempora.
-    </alert>
+    <div class="app-view__alert-list" />
   </div>
 </template>
 
@@ -18,11 +12,10 @@
 import routesList from '@/configs/router';
 
 import Navbar from '@/components/Navbar';
-import Alert from '@/components/Alert';
 
 export default {
   name: 'App',
-  components: { Navbar, Alert },
+  components: { Navbar },
 
   data() {
     return {
@@ -47,5 +40,33 @@ export default {
   display: flex;
   justify-content: center;
   align-items: center;
+
+  &__alert-list {
+    position: fixed;
+    max-width: $alertWidth;
+    width: 100%;
+    top: $navbarHeight + 40px;
+    right: 20px;
+    display: flex;
+    flex-direction: column;
+
+    &:empty {
+      display: none;
+    }
+
+    &::v-deep > *:not(:last-child) {
+      margin-bottom: 10px;
+    }
+  }
+}
+
+@media (max-width: $mobileXS) {
+  .app-view {
+    &__alert-list {
+      left: 20px;
+      max-width: none;
+      width: auto;
+    }
+  }
 }
 </style>
