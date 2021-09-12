@@ -24,9 +24,9 @@
         class="add-form__field"
         v-for="(field, index) in sneakerDraft"
         :key="index"
-        :placeholder="field.name"
-        :type="field.type ? field.type : 'text'"
+        v-bind="field"
         v-model="field.value"
+        @input="field.error = false"
       />
     </div>
     <submit-btn
@@ -50,39 +50,76 @@ export default {
       load: false,
       sneakerDraft: [
         {
-          name: 'Название',
+          placeholder: 'Название',
           value: '',
+          maxLength: 256,
+          error: false,
         },
         {
-          name: 'Расцветка',
+          placeholder: 'Расцветка',
           value: '',
+          maxLength: 256,
+          required: true,
+          error: false,
         },
         {
-          name: 'Артикул',
+          placeholder: 'Артикул',
           value: '',
+          maxLength: 256,
+          error: false,
         },
         {
-          name: 'Дата релиза',
+          placeholder: 'Дата релиза',
           value: '',
           type: 'date',
+          error: false,
         },
       ],
     };
   },
   methods: {
     postSneakers() {
-      this.load = true;
-      setTimeout(() => {
-        this.$api.postSneakers(this.serialize());
+      const dataToSend = this.serialize();
 
-        this.load = false;
-      }, 2000);
+      if (dataToSend) {
+        this.load = true;
+
+        setTimeout(() => {
+          this.$api.postSneakers(dataToSend);
+
+          this.load = false;
+          this.clearForm();
+        }, 2000);
+      }
     },
 
     serialize() {
-      return this.sneakerDraft.reduce((obj, { name, value }) => {
-        return Object.assign(obj, { [name]: value });
+      if (!this.validate()) {
+        return false;
+      }
+
+      return this.sneakerDraft.reduce((obj, { placeholder, value }) => {
+        return Object.assign(obj, { [placeholder]: value });
       }, {});
+    },
+
+    validate() {
+      let success = true;
+
+      this.sneakerDraft.forEach((field) => {
+        if (!field.value.trim().length) {
+          success = false;
+          field.error = true;
+        }
+      });
+
+      return success;
+    },
+
+    clearForm() {
+      this.sneakerDraft.forEach((item) => {
+        item.value = '';
+      });
     },
   },
 };
