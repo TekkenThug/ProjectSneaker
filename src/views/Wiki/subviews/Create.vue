@@ -89,6 +89,8 @@ export default {
 
           this.load = false;
           this.clearForm();
+
+          this.$renderVue.createAlert('success', 'Заявка отправлена');
         }, 2000);
       }
     },
