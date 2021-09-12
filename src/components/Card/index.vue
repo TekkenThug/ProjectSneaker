@@ -2,20 +2,12 @@
   <div
     class="card"
     :style="{
-      backgroundImage: `url(${productInfo.image})`
+      backgroundImage: `url('/images/tmp-sneaker.jpeg')`
     }"
   >
-    <div class="card__info">
-      <h3 class="card__title">
-        {{ productInfo.name }} / {{ productInfo.vendorCode }}
-      </h3>
-      <div class="card__vendor-code">
-        Артикул: {{ productInfo.vendorCode }}
-      </div>
-      <div class="card__avrg-price">
-        Дата релиза: {{ productInfo.releaseDate }}
-      </div>
-    </div>
+    <h3 class="card__title">
+      {{ productInfo.name }} / {{ productInfo.colorway }}
+    </h3>
   </div>
 </template>
 
@@ -30,8 +22,7 @@ export default {
         return {
           image: '',
           name: '',
-          vendorCode: '',
-          averagePrice: 0,
+          colorway: '',
         };
       },
     },
@@ -41,16 +32,24 @@ export default {
 
 <style lang="scss" scoped>
   .card {
-    border-radius: 10px;
+    @include trans;
+
+    border-radius: 15px;
     background-position: center;
     background-size: cover;
     background-repeat: no-repeat;
-    min-height: 300px;
+    height: 100px;
     position: relative;
     overflow: hidden;
     display: flex;
     flex-direction: column;
-    justify-content: flex-end;
+    justify-content: center;
+    user-select: none;
+    color: $color-1;
+
+    &:hover {
+      color: $color-5;
+    }
 
     &::before {
       @include trans;
@@ -62,41 +61,19 @@ export default {
       bottom: 0;
       right: 0;
       z-index: 0;
-      background-color: rgba($color-0, .3);
+      background: rgba($color-0, .4);
     }
 
-    &__info {
-      @include trans;
-
-      position: relative;
-      z-index: 1;
-      border-top-right-radius: 10px;
-      border-top-left-radius: 10px;
-      padding: 10px 15px;
-      text-align: left;
-      transform: translate(0, 70px);
-      color: $color-1;
+    &:hover::before {
+      background: $color-4;
     }
 
     &__title {
-      font-size: 32px;
+      font-size: 24px;
       font-weight: 700;
       text-transform: uppercase;
-      margin-bottom: 20px;
-    }
-
-    &:hover {
-      &::before {
-        background-color: rgba($color-0, .5);
-      }
-
-      .card__info {
-        background-color: $color-4;
-        color: $color-0;
-
-        transition: transform .3s ease;
-        transform: translate(0, 0);
-      }
+      position: relative;
+      z-index: 1;
     }
   }
 </style>

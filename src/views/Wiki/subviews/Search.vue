@@ -17,11 +17,12 @@
     />
     <preloader v-if="searchData.loading" />
     <div
-      class="search__result"
+      class="search__results"
       v-if="!searchData.loading"
     >
       <sneaker-card
         v-for="(pair, index) in searchData.result"
+        class="search__result-row"
         :key="index"
         :product-info="pair"
       />
@@ -103,6 +104,7 @@ export default {
     flex-direction: column;
     align-items: center;
     justify-content: center;
+
     &__title {
       font-size: 36px;
       font-weight: 700;
@@ -121,8 +123,11 @@ export default {
     }
 
     &__results {
-      max-width: 500px;
-      margin: 0 auto;
+      width: 100%;
+    }
+
+    &__result-row {
+      margin-bottom: 20px;
     }
 
     &__add-btn {
