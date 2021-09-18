@@ -17,6 +17,7 @@
     "import/no-unresolved": 0,
     "arrow-body-style": "off",
     "no-param-reassign": "off",
+    "prefer-destructuring": "off",
     "max-len": [
       "error",
       {
