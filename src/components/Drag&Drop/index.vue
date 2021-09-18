@@ -70,6 +70,8 @@ export default {
 
       if (validateImage(uploadFile.type)) {
         this.fileName = uploadFile.name;
+      } else {
+        this.$renderVue.createAlert('error', 'Ошибка при загрузке файла');
       }
     },
   },
