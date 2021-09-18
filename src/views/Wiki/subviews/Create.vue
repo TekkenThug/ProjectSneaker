@@ -29,6 +29,7 @@
         @input="field.error = false"
       />
     </div>
+    <drag />
     <submit-btn
       class="add-form__submit"
       title="Отправить"
@@ -39,10 +40,11 @@
 <script>
 import inputField from '@/components/UI/Input';
 import SubmitBtn from '@/components/UI/Button';
+import Drag from '@/components/Drag&Drop';
 
 export default {
   name: 'AddForm',
-  components: { inputField, SubmitBtn },
+  components: { inputField, SubmitBtn, Drag },
   data() {
     return {
       title: 'Добавление кроссовок',
