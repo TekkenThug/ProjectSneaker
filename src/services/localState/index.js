@@ -1,11 +1,28 @@
 /**
+ * Set locale state
+ *
+ * @param {string} locale - name of locale
+ * @param {Function} callback - callback after change state
+ * @returns {void}
+ */
+const setLocaleState = (locale, callback = () => {}) => {
+  localStorage.setItem('locale', locale);
+  callback();
+};
+
+/**
  * Set initial locale state
  *
  * @param {string} locale - name of locale
  * @returns {void}
  */
-export const initLocaleState = (locale) => {
+const initLocaleState = (locale) => {
   if (!localStorage.getItem('locale')) {
-    localStorage.setItem('locale', locale);
+    setLocaleState(locale);
   }
+};
+
+export default {
+  setLocaleState,
+  initLocaleState,
 };
