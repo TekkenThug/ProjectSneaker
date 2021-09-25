@@ -88,12 +88,14 @@ export default {
         this.searchData.loading = true;
         this.searchData.result = null;
 
-        if (this.searchData.value.trim()) {
-          this.searchData.result = await this.$api.getSneakers(this.searchData.value);
-          this.searchData.loading = false;
-        } else {
-          this.searchData.loading = false;
-        }
+        setTimeout(async () => {
+          if (this.searchData.value.trim()) {
+            this.searchData.result = await this.$api.getSneakers(this.searchData.value);
+            this.searchData.loading = false;
+          } else {
+            this.searchData.loading = false;
+          }
+        }, 1000);
       }
     },
   },
