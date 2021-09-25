@@ -13,11 +13,17 @@ import nodeAPI from '@/configs/axios';
 /**
  * Get list of sneakers
  *
+ * @param {string|null} stringForSearch - search string
+ * @param {number} limit - limit items for search
  * @returns {Promise} List of sneakers
  */
-export function getSneakers() {
-  return nodeAPI.get('/sneakers')
-    .then((res) => res.data);
+export function getSneakers(stringForSearch = '', limit = 3) {
+  return nodeAPI.get('/sneakers', {
+    params: {
+      model: stringForSearch,
+      limit,
+    },
+  }).then((res) => res.data);
 }
 
 /**
