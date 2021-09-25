@@ -85,12 +85,13 @@ export default {
           maxLength: 256,
           error: false,
         },
-        // {
-        //   placeholder: 'Дата релиза',
-        //   value: '',
-        //   type: 'date',
-        //   error: false,
-        // },
+        {
+          placeholder: 'Дата релиза',
+          name: 'releaseDate',
+          value: '',
+          type: 'date',
+          error: false,
+        },
       ],
       sneakerDraftImage: null,
     };
@@ -208,6 +209,10 @@ export default {
 
       &:nth-child(2n) {
         margin-left: 10px;
+      }
+
+      &:last-child {
+        flex-basis: 100%;
       }
     }
 
