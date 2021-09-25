@@ -11,6 +11,7 @@ A project site with a theme on sneakers. The big encyclopedia of sneakers from a
 - `Feature` - Ability to add your own pair of sneakers (with vendor code, image, retail price and release date)
 ## Roadmap
 
+- Adding translations
 - Adding a moderator page
 - Validation of applications by moderators before adding to the site
 - Improving the design (and bringing it to the sneaker theme)
