@@ -83,16 +83,14 @@ export default {
       this.$router.push({ name: 'wikiCreate' });
     },
 
-    getSearchingSneakers() {
+    async getSearchingSneakers() {
       if (!this.searchData.loading) {
         this.searchData.loading = true;
         this.searchData.result = null;
 
         if (this.searchData.value.trim()) {
-          setTimeout(async () => {
-            this.searchData.result = await this.$api.getSneakers();
-            this.searchData.loading = false;
-          }, 800);
+          this.searchData.result = await this.$api.getSneakers(this.searchData.value);
+          this.searchData.loading = false;
         } else {
           this.searchData.loading = false;
         }
