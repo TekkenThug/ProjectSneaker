@@ -15,17 +15,25 @@
       v-model="searchData.value"
       @input="getSearchingSneakers"
     />
-    <preloader v-if="searchData.loading" />
+    <preloader
+      v-if="searchData.loading"
+    />
     <div
+      v-else
       class="search__results"
-      v-if="!searchData.loading"
     >
-      <sneaker-card
+      <div
         v-for="(pair, index) in searchData.result"
-        class="search__result-row"
         :key="index"
-        :product-info="pair"
-      />
+      >
+        {{ pair.model }}
+      </div>
+<!--      <sneaker-card-->
+<!--        v-for="(pair, index) in searchData.result"-->
+<!--        class="search__result-row"-->
+<!--        :key="index"-->
+<!--        :product-info="pair"-->
+<!--      />-->
     </div>
     <p class="search__subtitle">
       Не нашли нужную, хотя знаете, что она существует? Добавьте её!
@@ -40,18 +48,16 @@
 </template>
 
 <script>
-import sneakers from '@/mock/sneakers';
-
 import SearchField from '@/components/UI/Input';
 import Btn from '@/components/UI/Button';
-import SneakerCard from '@/components/Card';
+// import SneakerCard from '@/components/Card';
 
 export default {
   name: 'Search',
   components: {
     SearchField,
     Btn,
-    SneakerCard,
+    // SneakerCard,
   },
   data() {
     return {
@@ -62,7 +68,7 @@ export default {
       },
 
       searchData: {
-        searchValue: '',
+        value: '',
         loading: false,
         result: null,
       },
@@ -88,10 +94,14 @@ export default {
         this.searchData.loading = true;
         this.searchData.result = null;
 
-        setTimeout(() => {
-          this.searchData.result = sneakers;
+        if (this.searchData.value.trim()) {
+          setTimeout(async () => {
+            this.searchData.result = await this.$api.getSneakers();
+            this.searchData.loading = false;
+          }, 800);
+        } else {
           this.searchData.loading = false;
-        }, 2000);
+        }
       }
     },
   },
@@ -119,11 +129,16 @@ export default {
     &__field {
       max-width: 320px;
       width: 100%;
-      margin: 35px auto;
+      margin: 35px auto 0;
     }
 
     &__results {
       width: 100%;
+      margin: 20px 0;
+
+      &:empty {
+        margin: 10px 0;
+      }
     }
 
     &__result-row {
