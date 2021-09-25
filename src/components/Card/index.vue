@@ -2,12 +2,16 @@
   <div
     class="card"
     :style="{
-      backgroundImage: `url('/images/tmp-sneaker.jpeg')`
+      backgroundImage: `url('${productInfo.picture}')`
     }"
   >
-    <h3 class="card__title">
-      {{ productInfo.name }} / {{ productInfo.colorway }}
-    </h3>
+    <div class="card__inner">
+      <h3 class="card__title">
+        {{ productInfo.model }} / {{ productInfo.colorway }}
+      </h3>
+<!--      <span class="card__price"> {{ productInfo.price }}</span>-->
+<!--      <span class="card__vendor">Артикул: {{ productInfo.vendorCode }}</span>-->
+    </div>
   </div>
 </template>
 
@@ -20,9 +24,11 @@ export default {
       type: Object,
       default() {
         return {
-          image: '',
-          name: '',
+          model: '',
           colorway: '',
+          price: '',
+          vendorCode: '',
+          picture: '',
         };
       },
     },
@@ -68,12 +74,15 @@ export default {
       background: $color-4;
     }
 
+    &__inner {
+      position: relative;
+      z-index: 1;
+    }
+
     &__title {
       font-size: 24px;
       font-weight: 700;
       text-transform: uppercase;
-      position: relative;
-      z-index: 1;
     }
   }
 </style>
