@@ -9,7 +9,7 @@
 </template>
 
 <script>
-import { initLocaleState } from '@/services/localState';
+import localState from '@/services/localState';
 import routesList from '@/configs/router';
 
 import Navbar from '@/components/Navbar';
@@ -25,7 +25,9 @@ export default {
   },
 
   created() {
-    initLocaleState(this.$i18n.locale);
+    localState.initLocaleState(this.$i18n.locale);
+
+    this.$i18n.locale = localStorage.getItem('locale');
   },
 };
 </script>
