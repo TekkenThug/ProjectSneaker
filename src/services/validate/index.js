@@ -9,6 +9,7 @@
  * @param {string} fileType - type of file
  * @returns {boolean} validateState - state of validate
  */
+// eslint-disable-next-line import/prefer-default-export
 export const validateImage = (fileType) => {
   return Boolean(fileType.match(/image/gi));
 };
