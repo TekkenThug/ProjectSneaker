@@ -29,7 +29,7 @@
         @input="field.error = false"
       />
     </div>
-    <drag />
+    <drag @fileUpload="setUploadedFile" />
     <submit-btn
       class="add-form__submit"
       title="Отправить"
@@ -41,6 +41,7 @@
 import inputField from '@/components/UI/Input';
 import SubmitBtn from '@/components/UI/Button';
 import Drag from '@/components/Drag&Drop';
+import createFormData from '@/services/createFormData';
 
 export default {
   name: 'AddForm',
@@ -87,6 +88,7 @@ export default {
         //   error: false,
         // },
       ],
+      sneakerDraftImage: null,
     };
   },
   methods: {
@@ -112,9 +114,13 @@ export default {
         return false;
       }
 
-      return this.sneakerDraft.reduce((obj, { name, value }) => {
+      const dataToSerialize = this.sneakerDraft.reduce((obj, { name, value }) => {
         return Object.assign(obj, { [name]: value });
       }, {});
+
+      dataToSerialize.picture = this.sneakerDraftImage;
+
+      return createFormData(dataToSerialize);
     },
 
     validate() {
@@ -127,6 +133,10 @@ export default {
         }
       });
 
+      if (!this.sneakerDraftImage) {
+        success = false;
+      }
+
       return success;
     },
 
@@ -134,6 +144,10 @@ export default {
       this.sneakerDraft.forEach((item) => {
         item.value = '';
       });
+    },
+
+    setUploadedFile(file) {
+      this.sneakerDraftImage = file;
     },
   },
 };
