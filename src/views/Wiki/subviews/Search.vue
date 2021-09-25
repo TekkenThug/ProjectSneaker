@@ -6,11 +6,11 @@
       {{ $t('Discover the world of sneakers') }}
     </h1>
     <p class="search__subtitle">
-      Найдите ту пару, которая вам нужна!
+      {{ $t('Find the pair you need!') }}
     </p>
     <search-field
       class="search__field"
-      placeholder="Какие кроссовки интересуют?"
+      :placeholder="$t('What kind of sneakers are you interested in?')"
       :icon="searchIcon"
       v-model="searchData.value"
       @input="getSearchingSneakers"
@@ -30,7 +30,7 @@
       />
     </div>
     <p class="search__subtitle">
-      Не нашли нужную, хотя знаете, что она существует? Добавьте её!
+      {{ $t(`Didn't find the right one, although you know that it exists? Add it!`) }}
     </p>
     <btn
       @click="goToCreatePage"
@@ -68,7 +68,7 @@ export default {
       },
 
       addBtn: {
-        title: 'Добавить пару',
+        title: this.$t('Add pair'),
         icon: {
           name: 'plus',
           width: 18,
