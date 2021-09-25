@@ -4,6 +4,7 @@ import './styles/tailwind.scss';
 
 /** Vue tools */
 import router from './services/router';
+import i18n from './services/translate/i18n';
 
 /** Plugins */
 import apiPlugin from '@/plugins/apiPlugin';
@@ -21,5 +22,6 @@ Vue.config.productionTip = false;
 
 new Vue({
   router,
+  i18n,
   render: (h) => h(App),
 }).$mount('#app');
