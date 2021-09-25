@@ -52,30 +52,40 @@ export default {
       load: false,
       sneakerDraft: [
         {
-          placeholder: 'Название',
+          placeholder: 'Модель',
+          name: 'model',
           value: '',
           maxLength: 256,
           error: false,
         },
         {
           placeholder: 'Расцветка',
+          name: 'colorway',
           value: '',
           maxLength: 256,
           required: true,
           error: false,
         },
         {
-          placeholder: 'Артикул',
+          placeholder: 'Цена',
+          name: 'price',
           value: '',
           maxLength: 256,
           error: false,
         },
         {
-          placeholder: 'Дата релиза',
+          placeholder: 'Артикул',
+          name: 'vendorCode',
           value: '',
-          type: 'date',
+          maxLength: 256,
           error: false,
         },
+        // {
+        //   placeholder: 'Дата релиза',
+        //   value: '',
+        //   type: 'date',
+        //   error: false,
+        // },
       ],
     };
   },
@@ -102,8 +112,8 @@ export default {
         return false;
       }
 
-      return this.sneakerDraft.reduce((obj, { placeholder, value }) => {
-        return Object.assign(obj, { [placeholder]: value });
+      return this.sneakerDraft.reduce((obj, { name, value }) => {
+        return Object.assign(obj, { [name]: value });
       }, {});
     },
 
