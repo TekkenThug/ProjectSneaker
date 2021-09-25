@@ -30,7 +30,7 @@ export function getSneakers(stringForSearch = '', limit = 3) {
 /**
  * Post sneakers
  *
- * @param {Sneakers} data - data on a pair of sneakers
+ * @param {FormData|boolean} data - data on a pair of sneakers
  * @returns {Promise} Status of posting
  */
 export function postSneakers(data) {
