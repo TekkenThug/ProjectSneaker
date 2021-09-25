@@ -2,7 +2,7 @@
   <label
     class="drag"
     :class="{
-      'drag--entered': entered || fileName,
+      'drag--entered': entered || fileInstance,
     }"
     @dragenter.prevent="entered = true"
     @dragleave.prevent="entered = false"
@@ -14,8 +14,8 @@
       class="drag__input"
       type="file"
     >
-    <span v-if="fileName">
-      {{ fileName }}
+    <span v-if="fileInstance">
+      {{ fileInstance.name }}
     </span>
     <span
       v-else
@@ -53,28 +53,28 @@ export default {
         name: 'image-add',
       },
       entered: false,
-      fileName: null,
+      fileInstance: null,
     };
   },
   methods: {
     fileHandler(type, event) {
-      let uploadFile = null;
-
       if (type === 'input') {
-        uploadFile = event.target.files[0];
+        this.fileInstance = event.target.files[0];
       } else if (type === 'drop') {
-        uploadFile = event.dataTransfer.files[0];
+        this.fileInstance = event.dataTransfer.files[0];
       } else {
         return;
       }
 
-      if (validateImage(uploadFile.type)) {
-        this.fileName = uploadFile.name;
-
-        this.$emit('fileUpload', uploadFile);
+      if (validateImage(this.fileInstance.type)) {
+        this.$emit('fileUpload', this.fileInstance);
       } else {
         this.$renderVue.createAlert('error', 'Ошибка при загрузке файла');
       }
+    },
+
+    clearDrop() {
+      this.fileInstance = null;
     },
   },
 };
