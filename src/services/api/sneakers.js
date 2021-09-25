@@ -16,7 +16,8 @@ import nodeAPI from '@/configs/axios';
  * @returns {Promise} List of sneakers
  */
 export function getSneakers() {
-  return nodeAPI.get('/sneakers');
+  return nodeAPI.get('/sneakers')
+    .then((res) => res.data);
 }
 
 /**
