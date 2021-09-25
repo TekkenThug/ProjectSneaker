@@ -35,6 +35,8 @@
 <script>
 import Icon from '@/components/UI/Icon';
 
+const ALERT_CLOSE_DELAY = 5000;
+
 export default {
   name: 'Alert',
   components: { Icon },
@@ -57,6 +59,11 @@ export default {
         error: 'error',
       },
     };
+  },
+  mounted() {
+    setTimeout(() => {
+      this.close();
+    }, ALERT_CLOSE_DELAY);
   },
   computed: {
     getIconsData() {
