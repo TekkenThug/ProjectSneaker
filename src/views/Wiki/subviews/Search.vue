@@ -3,7 +3,7 @@
     class="search"
   >
     <h1 class="search__title">
-      Откройте для себя мир сникеров
+      {{ $t('Discover the world of sneakers') }}
     </h1>
     <p class="search__subtitle">
       Найдите ту пару, которая вам нужна!
