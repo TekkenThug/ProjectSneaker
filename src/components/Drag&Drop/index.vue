@@ -32,6 +32,8 @@
   </label>
 </template>
 <script>
+import i18n from '@/services/translate/i18n';
+
 import { validateImage } from '@/services/validate';
 
 import Icon from '@/components/UI/Icon';
@@ -42,7 +44,7 @@ export default {
   props: {
     title: {
       type: String,
-      default: this.$t('Insert the image of the sneakers'),
+      default: i18n.t('Insert the image of the sneakers'),
     },
   },
   data() {
