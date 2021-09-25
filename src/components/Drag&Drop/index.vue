@@ -32,6 +32,8 @@
   </label>
 </template>
 <script>
+import i18n from '@/services/translate/i18n';
+
 import { validateImage } from '@/services/validate';
 
 import Icon from '@/components/UI/Icon';
@@ -42,7 +44,7 @@ export default {
   props: {
     title: {
       type: String,
-      default: 'Вставьте изображение кроссовок',
+      default: i18n.t('Insert the image of the sneakers'),
     },
   },
   data() {
@@ -69,7 +71,7 @@ export default {
       if (validateImage(this.fileInstance.type)) {
         this.$emit('fileUpload', this.fileInstance);
       } else {
-        this.$renderVue.createAlert('error', 'Ошибка при загрузке файла');
+        this.$renderVue.createAlert('error', this.$t('Error loading file'));
       }
     },
 

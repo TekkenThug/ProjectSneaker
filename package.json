@@ -5,7 +5,8 @@
   "scripts": {
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
-    "lint": "vue-cli-service lint"
+    "lint": "vue-cli-service lint",
+    "i18n:report": "vue-cli-service i18n:report --src \"./src/**/*.?(js|vue)\" --locales \"./src/locales/**/*.json\""
   },
   "dependencies": {
     "@tailwindcss/postcss7-compat": "^2.0.2",
@@ -15,6 +16,7 @@
     "postcss": "^7",
     "tailwindcss": "npm:@tailwindcss/postcss7-compat@^2.0.2",
     "vue": "^2.6.11",
+    "vue-i18n": "^8.26.1",
     "vue-router": "^3.2.0"
   },
   "devDependencies": {
@@ -33,6 +35,7 @@
     "style-resources-loader": "^1.4.1",
     "svgo": "^1.1.0",
     "svgo-loader": "^2.1.0",
+    "vue-cli-plugin-i18n": "~2.1.4",
     "vue-cli-plugin-svg-sprite": "~1.1.0",
     "vue-cli-plugin-tailwind": "~2.0.6",
     "vue-template-compiler": "^2.6.11"

@@ -35,7 +35,7 @@
     />
     <submit-btn
       class="add-form__submit"
-      title="Отправить"
+      :title="$t('Send')"
     />
   </form>
 </template>
@@ -52,19 +52,19 @@ export default {
   components: { inputField, SubmitBtn, Drag },
   data() {
     return {
-      title: 'Добавление кроссовок',
-      subtitle: 'После отправки, заявка на добавление будет рассмотрена модераторами',
+      title: this.$t('Adding sneakers'),
+      subtitle: this.$t('After submission, the application for adding will be considered by the moderators'),
       load: false,
       sneakerDraft: [
         {
-          placeholder: 'Модель',
+          placeholder: this.$t('Model'),
           name: 'model',
           value: '',
           maxLength: 256,
           error: false,
         },
         {
-          placeholder: 'Расцветка',
+          placeholder: this.$t('Colorway'),
           name: 'colorway',
           value: '',
           maxLength: 256,
@@ -72,21 +72,21 @@ export default {
           error: false,
         },
         {
-          placeholder: 'Цена',
+          placeholder: this.$t('Price'),
           name: 'price',
           value: '',
           maxLength: 256,
           error: false,
         },
         {
-          placeholder: 'Артикул',
+          placeholder: this.$t('Vendor code'),
           name: 'vendorCode',
           value: '',
           maxLength: 256,
           error: false,
         },
         {
-          placeholder: 'Дата релиза',
+          placeholder: this.$t('Release date'),
           name: 'releaseDate',
           value: '',
           type: 'date',
@@ -109,7 +109,7 @@ export default {
           this.load = false;
           this.clearForm();
 
-          this.$renderVue.createAlert('success', 'Заявка отправлена');
+          this.$renderVue.createAlert('success', this.$t('Application sent'));
         }, 2000);
       }
     },
