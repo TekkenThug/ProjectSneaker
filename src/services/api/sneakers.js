@@ -4,10 +4,11 @@ import nodeAPI from '@/configs/axios';
  * Pair of Sneakers
  *
  * @typedef {object} Sneakers
- * @property {string} name - pair name
+ * @property {string} model - model of sneakers
  * @property {string} colorway - current colorway
  * @property {string} vendorCode - vendor code of product
- * @property {string} releaseDate - worldwide release date
+ * @property {string} picture - link to picture
+ * @property {string} releaseDate - ?worldwide release date
  */
 
 /**
