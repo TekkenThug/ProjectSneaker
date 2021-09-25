@@ -22,18 +22,12 @@
       v-else
       class="search__results"
     >
-      <div
+      <sneaker-card
         v-for="(pair, index) in searchData.result"
+        class="search__result-row"
         :key="index"
-      >
-        {{ pair.model }}
-      </div>
-<!--      <sneaker-card-->
-<!--        v-for="(pair, index) in searchData.result"-->
-<!--        class="search__result-row"-->
-<!--        :key="index"-->
-<!--        :product-info="pair"-->
-<!--      />-->
+        :product-info="pair"
+      />
     </div>
     <p class="search__subtitle">
       Не нашли нужную, хотя знаете, что она существует? Добавьте её!
@@ -50,14 +44,14 @@
 <script>
 import SearchField from '@/components/UI/Input';
 import Btn from '@/components/UI/Button';
-// import SneakerCard from '@/components/Card';
+import SneakerCard from '@/components/Card';
 
 export default {
   name: 'Search',
   components: {
     SearchField,
     Btn,
-    // SneakerCard,
+    SneakerCard,
   },
   data() {
     return {
