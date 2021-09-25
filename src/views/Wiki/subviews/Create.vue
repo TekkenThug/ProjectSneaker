@@ -29,7 +29,10 @@
         @input="field.error = false"
       />
     </div>
-    <drag @fileUpload="setUploadedFile" />
+    <drag
+      @fileUpload="setUploadedFile"
+      ref="imageDrag"
+    />
     <submit-btn
       class="add-form__submit"
       title="Отправить"
@@ -38,10 +41,11 @@
 </template>
 
 <script>
+import createFormData from '@/services/createFormData';
+
 import inputField from '@/components/UI/Input';
 import SubmitBtn from '@/components/UI/Button';
 import Drag from '@/components/Drag&Drop';
-import createFormData from '@/services/createFormData';
 
 export default {
   name: 'AddForm',
@@ -144,6 +148,9 @@ export default {
       this.sneakerDraft.forEach((item) => {
         item.value = '';
       });
+
+      this.sneakerDraftImage = null;
+      this.$refs.imageDrag.clearDrop();
     },
 
     setUploadedFile(file) {
