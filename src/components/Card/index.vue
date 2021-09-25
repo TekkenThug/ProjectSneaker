@@ -9,8 +9,6 @@
       <h3 class="card__title">
         {{ productInfo.model }} / {{ productInfo.colorway }}
       </h3>
-<!--      <span class="card__price"> {{ productInfo.price }}</span>-->
-<!--      <span class="card__vendor">Артикул: {{ productInfo.vendorCode }}</span>-->
     </div>
   </div>
 </template>
@@ -28,6 +26,7 @@ export default {
           colorway: '',
           price: '',
           vendorCode: '',
+          releaseDate: '',
           picture: '',
         };
       },
