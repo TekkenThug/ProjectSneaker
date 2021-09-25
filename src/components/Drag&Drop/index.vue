@@ -42,7 +42,7 @@ export default {
   props: {
     title: {
       type: String,
-      default: 'Вставьте изображение кроссовок',
+      default: this.$t('Insert the image of the sneakers'),
     },
   },
   data() {
@@ -69,7 +69,7 @@ export default {
       if (validateImage(this.fileInstance.type)) {
         this.$emit('fileUpload', this.fileInstance);
       } else {
-        this.$renderVue.createAlert('error', 'Ошибка при загрузке файла');
+        this.$renderVue.createAlert('error', this.$t('Error loading file'));
       }
     },
 
