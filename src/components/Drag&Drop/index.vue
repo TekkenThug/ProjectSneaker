@@ -26,14 +26,12 @@
         :icon-data="iconData"
       />
       <b class="drag__default-title">
-        {{ title }}
+        {{ $t(title) }}
       </b>
     </span>
   </label>
 </template>
 <script>
-import i18n from '@/services/translate/i18n';
-
 import { validateImage } from '@/services/validate';
 
 import Icon from '@/components/UI/Icon';
@@ -44,7 +42,7 @@ export default {
   props: {
     title: {
       type: String,
-      default: i18n.t('Insert the image of the sneakers'),
+      default: 'Insert the image of the sneakers',
     },
   },
   data() {
