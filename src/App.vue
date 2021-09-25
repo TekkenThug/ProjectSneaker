@@ -9,6 +9,7 @@
 </template>
 
 <script>
+import { initLocaleState } from '@/services/localState';
 import routesList from '@/configs/router';
 
 import Navbar from '@/components/Navbar';
@@ -21,6 +22,10 @@ export default {
     return {
       routes: routesList,
     };
+  },
+
+  created() {
+    initLocaleState(this.$i18n.locale);
   },
 };
 </script>
