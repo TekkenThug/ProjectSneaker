@@ -1,37 +1,20 @@
 <template>
   <div class="sign-up">
-    <form
-      class="sign-up__form"
-      @submit.prevent
-    >
-      <input-field
-        v-for="(field, index) in fields"
-        :key="index"
-        class="sign-up__form-field"
-        v-bind="field"
-        v-model="field.value"
-      />
-      <btn
-        class="sign-up__form-submit"
-        :title="$t('Sign up')"
-      />
-      <router-link
-        :to="{ name: 'SignIn' }"
-        class="sign-up__form-link"
-      >
-        {{ $t('Already Registered? Sign in!') }}
-      </router-link>
-    </form>
+    <auth-form
+      :sending-fields="fields"
+      link-title="Already Registered? Sign in!"
+      btn-title="Sign up"
+      route-to="SignIn"
+    />
   </div>
 </template>
 
 <script>
-import InputField from '@/components/UI/Input';
-import Btn from '@/components/UI/Button';
+import AuthForm from '@/components/AuthForm';
 
 export default {
   name: 'SignUp',
-  components: { InputField, Btn },
+  components: { AuthForm },
   data() {
     return {
       fields: {
@@ -60,7 +43,5 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.sign-up {
-  @include authForm;
-}
+
 </style>
