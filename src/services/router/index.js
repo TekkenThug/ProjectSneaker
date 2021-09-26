@@ -1,29 +1,30 @@
 import Vue from 'vue';
 import VueRouter from 'vue-router';
 
-import Wiki from '@/views/Wiki/Wiki';
-import wikiRoutes from './wiki';
+import Main from '@/views/Main';
+import mainPageRoutes from './mainPage';
+
+import Auth from '@/views/Auth/Auth';
 
 Vue.use(VueRouter);
 
 const routes = [
   {
     path: '/',
+    component: Main,
+    name: 'MainPage',
     redirect: {
       name: 'Wiki',
     },
+    children: mainPageRoutes,
   },
   {
-    path: '/wiki',
-    name: 'Wiki',
-    component: Wiki,
-    redirect: {
-      name: 'wikiSearch',
-    },
+    path: '/auth',
+    name: 'Auth',
+    component: Auth,
     meta: {
-      title: 'Wiki',
+      title: 'Auth',
     },
-    children: wikiRoutes,
   },
 ];
 
