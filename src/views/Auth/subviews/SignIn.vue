@@ -23,12 +23,12 @@
         class="sign-in__form-submit"
         :title="$t('Log in')"
       />
-      <a
-        href=""
+      <router-link
+        :to="{ name: 'SignUp' }"
         class="sign-in__form-link"
       >
         {{ $t('For the first time? Register now') }}
-      </a>
+      </router-link>
     </form>
   </div>
 </template>
