@@ -25,27 +25,3 @@
     color: rgba($color-4, .5);
   }
 }
-
-@mixin authForm {
-  &__form {
-    margin-top: 40px;
-    padding: 20px;
-    border: 1px solid $color-3;
-    border-radius: 8px;
-
-    &-field {
-      &:not(&:last-child) {
-        margin-bottom: 15px;
-      }
-    }
-
-    &-link {
-      @include linkStyle;
-    }
-
-    &-submit {
-      width: 100%;
-      margin-bottom: 10px;
-    }
-  }
-}
