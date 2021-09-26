@@ -5,7 +5,13 @@
       style="background-image: url('/images/auth-bg.png')"
     />
     <div class="auth__content">
-      <router-view class="auth__content-inner" />
+      <div class="auth__content-inner">
+        <img
+          src="/images/logo.png"
+          alt="logotype"
+        >
+        <router-view />
+      </div>
     </div>
   </div>
 </template>
