@@ -2,6 +2,7 @@
 	"Add pair": "Добавить пару",
 	"Adding sneakers": "Добавление кроссовок",
 	"After submission, the application for adding will be considered by the moderators": "После подачи заявка на добавление будет рассмотрена модераторами",
+	"Already Registered? Sign in!": "Уже зарегистрированы? Войдите!",
 	"Application sent": "Заявка отправлена",
 	"Colorway": "Расцветка",
 	"Didn't find the right one, although you know that it exists? Add it!": "Не нашли нужную, хотя знаете, что она существует? Добавьте её!",
@@ -13,10 +14,13 @@
 	"Log in": "Войти",
 	"Login": "Логин",
 	"Model": "Модель",
+	"Nickname": "Никнейм",
 	"Password": "Пароль",
 	"Price": "Цена",
 	"Release date": "Дата релиза",
+	"Repeat password": "Повторите пароль",
 	"Send": "Отправить",
+	"Sign up": "Зарегистрироваться",
 	"Vendor code": "Артикул",
 	"What kind of sneakers are you interested in?": "Какие кроссовки вас интересуют?"
 }

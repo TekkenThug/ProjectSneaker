@@ -2,6 +2,7 @@
 	"Add pair": "Add pair",
 	"Adding sneakers": "Adding sneakers",
 	"After submission, the application for adding will be considered by the moderators": "After submission, the application for adding will be considered by the moderators",
+	"Already Registered? Sign in!": "Already Registered? Sign in!",
 	"Application sent": "Application sent",
 	"Colorway": "Colorway",
 	"Didn't find the right one, although you know that it exists? Add it!": "Didn't find the right one, although you know that it exists? Add it!",
@@ -13,10 +14,13 @@
 	"Log in": "Log in",
 	"Login": "Login",
 	"Model": "Model",
+	"Nickname": "Nickname",
 	"Password": "Password",
 	"Price": "Price",
 	"Release date": "Release date",
+	"Repeat password": "Repeat password",
 	"Send": "Send",
+	"Sign up": "Sign up",
 	"Vendor code": "Vendor code",
 	"What kind of sneakers are you interested in?": "What kind of sneakers are you interested in?"
 }
