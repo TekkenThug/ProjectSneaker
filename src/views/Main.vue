@@ -32,6 +32,10 @@ export default {
 }
 
 .main {
-  padding-top: $navbarHeight;
+  padding: ($navbarHeight + 40px) 40px 40px;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 </style>

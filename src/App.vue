@@ -24,11 +24,7 @@ export default {
 <style lang="scss" scoped>
 .app-view {
   min-height: 100vh;
-  padding: 40px;
-  flex-grow: 1;
   display: flex;
-  justify-content: center;
-  align-items: center;
 
   &__alert-list {
     position: fixed;
