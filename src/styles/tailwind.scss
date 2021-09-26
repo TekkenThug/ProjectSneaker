@@ -2,6 +2,10 @@
 @import "tailwindcss/components";
 @import "tailwindcss/utilities";
 
+html, body {
+    height: 100%;
+}
+
 body {
     font-family: 'Lato', sans-serif;
     font-weight: 400;
