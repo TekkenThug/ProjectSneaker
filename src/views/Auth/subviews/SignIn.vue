@@ -18,7 +18,7 @@ export default {
   data() {
     return {
       fields: {
-        loginField: {
+        emailField: {
           value: '',
           placeholder: this.$t('Email'),
           icon: {
