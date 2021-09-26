@@ -5,6 +5,7 @@ import Main from '@/views/Main';
 import mainPageRoutes from './mainPage';
 
 import Auth from '@/views/Auth/Auth';
+import authRoutes from './auth';
 
 Vue.use(VueRouter);
 
@@ -25,6 +26,10 @@ const routes = [
     meta: {
       title: 'Auth',
     },
+    redirect: {
+      name: 'SignIn',
+    },
+    children: authRoutes,
   },
 ];
 
