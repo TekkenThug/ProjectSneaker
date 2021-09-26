@@ -1,4 +1,5 @@
 import SignIn from '@/views/Auth/subviews/SignIn';
+import SignUp from '@/views/Auth/subviews/SignUp';
 
 export default [
   {
@@ -7,6 +8,14 @@ export default [
     name: 'SignIn',
     meta: {
       title: 'SignIn',
+    },
+  },
+  {
+    path: 'sign-up',
+    component: SignUp,
+    name: 'SignUp',
+    meta: {
+      title: 'SignUp',
     },
   },
 ];
