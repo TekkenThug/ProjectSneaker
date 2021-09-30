@@ -1,33 +1,42 @@
 <template>
-  <div
-    class="ui-input"
-    :class="{
-      'ui-input--focused': focus,
-      'ui-input--error': isError,
-    }"
+  <validation-provider
+    tag="div"
+    rules=""
+    v-slot="{ errors }"
   >
-    <icon
-      class="ui-input__icon"
-      v-if="Object.keys(icon).length"
-      :icon-data="icon"
-    />
-    <input
-      :value="value"
-      :placeholder="placeholder"
-      :type="type"
-      @input="$emit('input', $event.target.value)"
-      @focusin="focus = true"
-      @focusout="focus = false"
+    <div
+      class="ui-input"
+      :class="{
+        'ui-input--focused': focus,
+        'ui-input--error': isError,
+      }"
     >
-  </div>
+      <icon
+        class="ui-input__icon"
+        v-if="Object.keys(icon).length"
+        :icon-data="icon"
+      />
+      <input
+        :value="value"
+        :placeholder="placeholder"
+        :type="type"
+        @input="$emit('input', $event.target.value)"
+        @focusin="focus = true"
+        @focusout="focus = false"
+      >
+    </div>
+    <span class="ui-input__error"> {{ errors[0] }}</span>
+  </validation-provider>
 </template>
 
 <script>
+import { ValidationProvider } from 'vee-validate';
+
 import Icon from '@/components/UI/Icon';
 
 export default {
   name: 'Input',
-  components: { Icon },
+  components: { Icon, ValidationProvider },
 
   data() {
     return {
@@ -134,6 +143,13 @@ export default {
       + input {
         padding-left: 35px;
       }
+    }
+
+    &__error {
+      font-size: 12px;
+      line-height: 16px;
+      color: $color-4;
+      font-weight: 700;
     }
   }
 </style>
