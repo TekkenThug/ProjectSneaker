@@ -1,35 +1,42 @@
 <template>
-  <form
-    class="auth-form"
-    @submit.prevent
-  >
-    <input-field
-      v-for="(field, index) in fields"
-      :key="index"
-      class="auth-form__field"
-      v-bind="field"
-      v-model="field.value"
-    />
-    <btn
-      class="auth-form__submit"
-      :title="$t(btnTitle)"
-    />
-    <router-link
-      :to="{ name: routeTo }"
-      class="auth-form__link"
+  <validation-observer v-slot="{ handleSubmit }">
+    <form
+      @submit.prevent="handleSubmit(successValidate)"
+      class="auth-form"
     >
-      {{ $t(linkTitle) }}
-    </router-link>
-  </form>
+      <input-field
+        v-for="(field, index) in fields"
+        :key="index"
+        class="auth-form__field"
+        v-bind="field"
+        v-model="field.value"
+      />
+      <btn
+        class="auth-form__submit"
+        :title="$t(btnTitle)"
+      />
+      <router-link
+        :to="{ name: routeTo }"
+        class="auth-form__link"
+      >
+        {{ $t(linkTitle) }}
+      </router-link>
+    </form>
+  </validation-observer>
 </template>
 
 <script>
+import { ValidationObserver } from 'vee-validate';
 import InputField from '@/components/UI/Input';
 import Btn from '@/components/UI/Button';
 
 export default {
   name: 'AuthForm',
-  components: { InputField, Btn },
+  components: {
+    InputField,
+    Btn,
+    ValidationObserver,
+  },
   props: {
     linkTitle: {
       type: String,
@@ -52,6 +59,11 @@ export default {
     return {
       fields: this.sendingFields,
     };
+  },
+  methods: {
+    successValidate() {
+      this.$emit('checkAuthData');
+    },
   },
 };
 </script>
