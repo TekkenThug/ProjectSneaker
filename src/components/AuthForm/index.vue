@@ -27,6 +27,7 @@
 
 <script>
 import { ValidationObserver } from 'vee-validate';
+import serialize from '@/services/serialize';
 import InputField from '@/components/UI/Input';
 import Btn from '@/components/UI/Button';
 
@@ -62,7 +63,7 @@ export default {
   },
   methods: {
     successValidate() {
-      this.$emit('checkAuthData');
+      this.$emit('checkAuthData', serialize(this.fields));
     },
   },
 };
