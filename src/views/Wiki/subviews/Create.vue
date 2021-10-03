@@ -1,55 +1,63 @@
 <template>
-  <form
-    class="add-form"
-    @submit.prevent="postSneakers"
-  >
-    <preloader
-      v-if="load"
-      class="add-form__load"
-    />
-    <h3
-      v-show="title"
-      class="add-form__title"
+  <validation-observer ref="postSneakersForm">
+    <form
+      class="add-form"
+      @submit.prevent="postSneakers"
     >
-      {{ title }}
-    </h3>
-    <p
-      v-show="subtitle"
-      class="add-form__subtitle"
-    >
-      {{ subtitle }}
-    </p>
-    <div class="add-form__fields">
-      <inputField
-        class="add-form__field"
-        v-for="(field, index) in sneakerDraft"
-        :key="index"
-        v-bind="field"
-        v-model="field.value"
-        @input="field.error = false"
+      <preloader
+        v-if="load"
+        class="add-form__load"
       />
-    </div>
-    <drag
-      @fileUpload="setUploadedFile"
-      ref="imageDrag"
-    />
-    <submit-btn
-      class="add-form__submit"
-      :title="$t('Send')"
-    />
-  </form>
+      <h3
+        v-show="title"
+        class="add-form__title"
+      >
+        {{ title }}
+      </h3>
+      <p
+        v-show="subtitle"
+        class="add-form__subtitle"
+      >
+        {{ subtitle }}
+      </p>
+      <div class="add-form__fields">
+        <inputField
+          class="add-form__field"
+          v-for="(field, index) in sneakerDraft"
+          :key="index"
+          v-bind="field"
+          v-model="field.value"
+          @input="field.error = false"
+        />
+      </div>
+      <drag
+        @fileUpload="setUploadedFile"
+        ref="imageDrag"
+      />
+      <submit-btn
+        class="add-form__submit"
+        :title="$t('Send')"
+      />
+    </form>
+  </validation-observer>
 </template>
 
 <script>
+import { ValidationObserver } from 'vee-validate';
 import createFormData from '@/services/createFormData';
 
-import inputField from '@/components/UI/Input';
+import InputField from '@/components/UI/Input';
 import SubmitBtn from '@/components/UI/Button';
 import Drag from '@/components/Drag&Drop';
 
 export default {
   name: 'AddForm',
-  components: { inputField, SubmitBtn, Drag },
+  components: {
+    InputField,
+    SubmitBtn,
+    Drag,
+    ValidationObserver,
+  },
   data() {
     return {
       title: this.$t('Adding sneakers'),
@@ -58,39 +66,34 @@ export default {
       sneakerDraft: [
         {
           placeholder: this.$t('Model'),
+          validationRules: ['required'],
           name: 'model',
           value: '',
-          maxLength: 256,
-          error: false,
         },
         {
           placeholder: this.$t('Colorway'),
+          validationRules: ['required'],
           name: 'colorway',
           value: '',
-          maxLength: 256,
-          required: true,
-          error: false,
         },
         {
           placeholder: this.$t('Price'),
+          validationRules: ['required', 'double'],
           name: 'price',
           value: '',
-          maxLength: 256,
-          error: false,
         },
         {
           placeholder: this.$t('Vendor code'),
+          validationRules: ['required'],
           name: 'vendorCode',
           value: '',
-          maxLength: 256,
-          error: false,
         },
         {
           placeholder: this.$t('Release date'),
+          validationRules: ['required'],
           name: 'releaseDate',
           value: '',
           type: 'date',
-          error: false,
         },
       ],
       sneakerDraftImage: null,
@@ -98,27 +101,26 @@ export default {
   },
   methods: {
     postSneakers() {
-      const dataToSend = this.serialize();
+      this.$refs.postSneakersForm.validate()
+        .then((success) => {
+          if (success) {
+            const dataToSend = this.serialize();
 
-      if (dataToSend) {
-        this.load = true;
+            this.load = true;
 
-        setTimeout(() => {
-          this.$api.postSneakers(dataToSend);
+            setTimeout(() => {
+              this.$api.postSneakers(dataToSend);
 
-          this.load = false;
-          this.clearForm();
+              this.load = false;
+              this.clearForm();
 
-          this.$renderVue.createAlert('success', this.$t('Application sent'));
-        }, 2000);
-      }
+              this.$renderVue.createAlert('success', this.$t('Application sent'));
+            }, 2000);
+          }
+        });
     },
 
     serialize() {
-      if (!this.validate()) {
-        return false;
-      }
-
       const dataToSerialize = this.sneakerDraft.reduce((obj, { name, value }) => {
         return Object.assign(obj, { [name]: value });
       }, {});
@@ -128,30 +130,17 @@ export default {
       return createFormData(dataToSerialize);
     },
 
-    validate() {
-      let success = true;
-
-      this.sneakerDraft.forEach((field) => {
-        if (!field.value.trim().length) {
-          success = false;
-          field.error = true;
-        }
-      });
-
-      if (!this.sneakerDraftImage) {
-        success = false;
-      }
-
-      return success;
-    },
-
     clearForm() {
       this.sneakerDraft.forEach((item) => {
         item.value = '';
       });
 
       this.sneakerDraftImage = null;
-      this.$refs.imageDrag.clearDrop();
+
+      this.$nextTick(() => {
+        this.$refs.imageDrag.clearDrop();
+        this.$refs.postSneakersForm.reset();
+      });
     },
 
     setUploadedFile(file) {
