@@ -44,7 +44,7 @@
 
 <script>
 import { ValidationObserver } from 'vee-validate';
-import createFormData from '@/services/createFormData';
+import { serializeToFormData } from '@/services/serialize';
 
 import InputField from '@/components/UI/Input';
 import SubmitBtn from '@/components/UI/Button';
@@ -127,7 +127,7 @@ export default {
 
       dataToSerialize.picture = this.sneakerDraftImage;
 
-      return createFormData(dataToSerialize);
+      return serializeToFormData(dataToSerialize);
     },
 
     clearForm() {
