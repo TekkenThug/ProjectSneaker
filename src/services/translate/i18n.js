@@ -11,9 +11,10 @@ const DICTIONARY = {};
 /**
  * Set translations from libraries and packages
  *
- * @param {string}key - key for set translations
+ * @param {string} key - key for set translations
  * @param {JSON} libForEn - translations on english
  * @param {JSON} libForRu - translations on russian
+ * @returns {void}
  */
 const processTranslationsFromLib = (key, libForEn, libForRu) => {
   DICTIONARY.en[key] = libForEn;
