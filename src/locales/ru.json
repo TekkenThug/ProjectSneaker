@@ -22,5 +22,9 @@
 	"Send": "Отправить",
 	"Sign up": "Зарегистрироваться",
 	"Vendor code": "Артикул",
-	"What kind of sneakers are you interested in?": "Какие кроссовки вас интересуют?"
+	"What kind of sneakers are you interested in?": "Какие кроссовки вас интересуют?",
+	"validations": {
+		"required": "Поле обязательно для заполнения",
+		"email": "Неверный формат почты"
+	}
 }
