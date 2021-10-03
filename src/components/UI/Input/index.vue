@@ -1,7 +1,7 @@
 <template>
   <validation-provider
     tag="div"
-    rules=""
+    :rules="rules"
     v-slot="{ errors }"
   >
     <div
@@ -30,7 +30,8 @@
 </template>
 
 <script>
-import { ValidationProvider } from 'vee-validate';
+import { ValidationProvider, extend } from 'vee-validate';
+import * as rulesDict from 'vee-validate/dist/rules';
 
 import Icon from '@/components/UI/Icon';
 
@@ -67,12 +68,32 @@ export default {
       type: Boolean,
       default: false,
     },
+    validationRules: {
+      type: Array,
+      default: () => [],
+    },
   },
 
   computed: {
     isError() {
       return this.error && !this.focus;
     },
+
+    rules() {
+      if (this.validationRules.length > 0) {
+        return this.validationRules.join('|');
+      }
+
+      return '';
+    },
+  },
+
+  created() {
+    if (this.validationRules.length > 0) {
+      this.validationRules.forEach((rule) => {
+        extend(rule, rulesDict[rule]);
+      });
+    }
   },
 };
 </script>

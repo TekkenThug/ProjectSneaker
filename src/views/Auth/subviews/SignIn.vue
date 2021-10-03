@@ -21,6 +21,7 @@ export default {
         emailField: {
           value: '',
           placeholder: this.$t('Email'),
+          validationRules: ['required', 'email'],
           icon: {
             width: 16,
             height: 16,
@@ -31,6 +32,7 @@ export default {
           value: '',
           type: 'password',
           placeholder: this.$t('Password'),
+          validationRules: ['required'],
           icon: {
             width: 16,
             height: 16,
