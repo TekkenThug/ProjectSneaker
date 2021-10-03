@@ -1,9 +1,6 @@
 import Vue from 'vue';
 import VueI18n from 'vue-i18n';
 
-import VMEN from 'vee-validate/dist/locale/en';
-import VMRU from 'vee-validate/dist/locale/ru';
-
 Vue.use(VueI18n);
 
 const DICTIONARY = {};
@@ -16,6 +13,7 @@ const DICTIONARY = {};
  * @param {JSON} libForRu - translations on russian
  * @returns {void}
  */
+// eslint-disable-next-line no-unused-vars
 const processTranslationsFromLib = (key, libForEn, libForRu) => {
   DICTIONARY.en[key] = libForEn;
   DICTIONARY.ru[key] = libForRu;
@@ -37,8 +35,6 @@ const loadLocaleMessages = () => {
       DICTIONARY[locale] = locales(key);
     }
   });
-
-  processTranslationsFromLib('validations', VMEN, VMRU);
 
   return DICTIONARY;
 };
