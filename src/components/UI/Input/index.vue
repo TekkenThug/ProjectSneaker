@@ -2,13 +2,13 @@
   <validation-provider
     tag="div"
     :rules="rules"
-    v-slot="{ errors }"
+    v-slot="{ errors, classes }"
   >
     <div
       class="ui-input"
       :class="{
+        ...classes,
         'ui-input--focused': focus,
-        'ui-input--error': isError,
       }"
     >
       <icon
@@ -32,7 +32,7 @@
 </template>
 
 <script>
-import { ValidationProvider, extend } from 'vee-validate';
+import { ValidationProvider, extend, configure } from 'vee-validate';
 import * as rulesDict from 'vee-validate/dist/rules';
 import i18n from '@/services/translate/i18n';
 
@@ -67,10 +67,6 @@ export default {
         return {};
       },
     },
-    error: {
-      type: Boolean,
-      default: false,
-    },
     validationRules: {
       type: Array,
       default: () => [],
@@ -78,10 +74,6 @@ export default {
   },
 
   computed: {
-    isError() {
-      return this.error && !this.focus;
-    },
-
     rules() {
       if (this.validationRules.length > 0) {
         return this.validationRules.join('|');
@@ -92,6 +84,12 @@ export default {
   },
 
   created() {
+    configure({
+      classes: {
+        invalid: 'ui-input--error',
+      },
+    });
+
     if (this.validationRules.length > 0) {
       this.validationRules.forEach((rule) => {
         extend(rule, {
@@ -139,7 +137,7 @@ export default {
       &::after {
         opacity: 1;
         border-color: $alert_error;
-        background-color: rgba($alert_error, .3);
+        background-color: rgba($alert_error, .15);
       }
     }
 
