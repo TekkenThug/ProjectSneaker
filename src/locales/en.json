@@ -25,6 +25,7 @@
 	"What kind of sneakers are you interested in?": "What kind of sneakers are you interested in?",
 	"validations": {
 		"required": "Required field",
-		"email": "Invalid mail format"
+		"email": "Invalid mail format",
+		"double": "Value must be a valid decimal"
 	}
 }
