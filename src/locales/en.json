@@ -26,6 +26,7 @@
 	"validations": {
 		"required": "Required field",
 		"email": "Invalid mail format",
-		"double": "Value must be a valid decimal"
+		"double": "Value must be a valid decimal",
+		"image": "Invalid file type"
 	}
 }
