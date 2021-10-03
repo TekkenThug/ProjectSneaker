@@ -25,13 +25,16 @@
         @focusout="focus = false"
       >
     </div>
-    <span class="ui-input__error"> {{ errors[0] }}</span>
+    <div class="ui-input__error">
+      {{ errors[0] }}
+    </div>
   </validation-provider>
 </template>
 
 <script>
 import { ValidationProvider, extend } from 'vee-validate';
 import * as rulesDict from 'vee-validate/dist/rules';
+import i18n from '@/services/translate/i18n';
 
 import Icon from '@/components/UI/Icon';
 
@@ -91,7 +94,10 @@ export default {
   created() {
     if (this.validationRules.length > 0) {
       this.validationRules.forEach((rule) => {
-        extend(rule, rulesDict[rule]);
+        extend(rule, {
+          ...rulesDict[rule],
+          message: i18n.t(`validations.${rule}`),
+        });
       });
     }
   },
@@ -171,6 +177,7 @@ export default {
       line-height: 16px;
       color: $color-4;
       font-weight: 700;
+      margin-top: 5px;
     }
   }
 </style>
