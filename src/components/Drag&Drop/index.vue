@@ -1,44 +1,53 @@
 <template>
-  <label
-    class="drag"
-    :class="{
-      'drag--entered': entered || fileInstance,
-    }"
-    @dragenter.prevent="entered = true"
-    @dragleave.prevent="entered = false"
-    @dragover.prevent
-    @drop.prevent="fileHandler('drop', $event)"
+  <validation-provider
+    tag="div"
+    rules="image"
+    ref="dragUploader"
+    v-slot="{ errors }"
   >
-    <input
-      @change="fileHandler('input', $event)"
-      class="drag__input"
-      type="file"
+    <label
+      class="drag"
+      :class="{
+        'drag--entered': entered || fileInstance,
+      }"
+      @dragenter.prevent="entered = true"
+      @dragleave.prevent="entered = false"
+      @dragover.prevent
+      @drop.prevent="fileHandler"
     >
-    <span v-if="fileInstance">
-      {{ fileInstance.name }}
-    </span>
-    <span
-      v-else
-      class="drag__default"
-    >
-      <icon
-        class="drag__default-icon"
-        :icon-data="iconData"
-      />
-      <b class="drag__default-title">
-        {{ $t(title) }}
-      </b>
-    </span>
-  </label>
+      <input
+        @change="fileHandler"
+        class="drag__input"
+        type="file"
+      >
+      <span v-if="fileInstance">
+        {{ fileInstance.name }}
+      </span>
+      <span
+        v-else
+        class="drag__default"
+      >
+        <icon
+          class="drag__default-icon"
+          :icon-data="iconData"
+        />
+        <b class="drag__default-title">
+          {{ errors.length ? errors[0] : $t(title) }}
+        </b>
+      </span>
+    </label>
+  </validation-provider>
 </template>
 <script>
-import { validateImage } from '@/services/validate';
+import { ValidationProvider, extend } from 'vee-validate';
+import { image } from 'vee-validate/dist/rules';
 
 import Icon from '@/components/UI/Icon';
+import i18n from '@/services/translate/i18n';
 
 export default {
   name: 'Draggable',
-  components: { Icon },
+  components: { Icon, ValidationProvider },
   props: {
     title: {
       type: String,
@@ -57,16 +66,12 @@ export default {
     };
   },
   methods: {
-    fileHandler(type, event) {
-      if (type === 'input') {
-        this.fileInstance = event.target.files[0];
-      } else if (type === 'drop') {
-        this.fileInstance = event.dataTransfer.files[0];
-      } else {
-        return;
-      }
+    async fileHandler(event) {
+      const files = Array.from(event.dataTransfer?.files || event.target.files);
+      const { valid } = await this.$refs.dragUploader.validate(files);
 
-      if (validateImage(this.fileInstance.type)) {
+      if (valid) {
+        this.fileInstance = files[0];
         this.$emit('fileUpload', this.fileInstance);
       } else {
         this.$renderVue.createAlert('error', this.$t('Error loading file'));
@@ -76,6 +81,12 @@ export default {
     clearDrop() {
       this.fileInstance = null;
     },
+  },
+  created() {
+    extend('image', {
+      ...image,
+      message: i18n.t('validations.image'),
+    });
   },
 };
 </script>
