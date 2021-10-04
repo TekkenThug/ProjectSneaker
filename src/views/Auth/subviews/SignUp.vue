@@ -49,7 +49,8 @@ export default {
   methods: {
     registerUser(registerData) {
       this.$api.auth.register(registerData)
-        .then(() => {
+        .then((msg) => {
+          this.$renderVue.createAlert('success', this.$t(msg.toString()));
           this.$router.push({ name: 'SignIn' });
         })
         .catch((e) => {
