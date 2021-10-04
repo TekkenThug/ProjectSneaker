@@ -33,14 +33,15 @@ export default {
         password: {
           value: '',
           type: 'password',
+          name: 'confirm',
           placeholder: this.$t('Password'),
-          validationRules: ['required'],
+          validationRules: ['required', 'password'],
         },
         repeatPassword: {
           value: '',
           type: 'password',
           placeholder: this.$t('Repeat password'),
-          validationRules: ['required'],
+          validationRules: ['required', 'password-confirm:@confirm'],
         },
       },
     };
