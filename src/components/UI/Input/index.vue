@@ -38,6 +38,8 @@ import i18n from '@/services/translate/i18n';
 
 import Icon from '@/components/UI/Icon';
 
+const PASSWORD_REGEX = new RegExp(/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])[0-9a-zA-Z]{8,}$/);
+
 export default {
   name: 'Input',
   components: { Icon, ValidationProvider },
@@ -88,6 +90,14 @@ export default {
       classes: {
         invalid: 'ui-input--error',
       },
+    });
+
+    extend('password', (value) => {
+      if (PASSWORD_REGEX.test(value)) {
+        return true;
+      }
+
+      return i18n.t('validations.password');
     });
 
     if (this.validationRules.length > 0) {
