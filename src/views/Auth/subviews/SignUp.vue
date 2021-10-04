@@ -2,6 +2,7 @@
   <div class="sign-up">
     <auth-form
       :sending-fields="fields"
+      @checkAuthData="registerUser"
       link-title="Already Registered? Sign in!"
       btn-title="Sign up"
       route-to="SignIn"
@@ -18,23 +19,23 @@ export default {
   data() {
     return {
       fields: {
-        emailField: {
+        email: {
           value: '',
           placeholder: this.$t('Email'),
           validationRules: ['required', 'email'],
         },
-        nickField: {
+        nickname: {
           value: '',
           placeholder: this.$t('Nickname'),
           validationRules: ['required'],
         },
-        passwordField: {
+        password: {
           value: '',
           type: 'password',
           placeholder: this.$t('Password'),
           validationRules: ['required'],
         },
-        repeatPasswordField: {
+        repeatPassword: {
           value: '',
           type: 'password',
           placeholder: this.$t('Repeat password'),
@@ -42,6 +43,11 @@ export default {
         },
       },
     };
+  },
+  methods: {
+    async registerUser(registerData) {
+      await this.$api.auth.register(registerData);
+    },
   },
 };
 </script>
