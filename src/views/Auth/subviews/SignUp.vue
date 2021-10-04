@@ -2,6 +2,7 @@
   <div class="sign-up">
     <auth-form
       :sending-fields="fields"
+      ref="authForm"
       @checkAuthData="registerUser"
       link-title="Already Registered? Sign in!"
       btn-title="Sign up"
@@ -45,8 +46,15 @@ export default {
     };
   },
   methods: {
-    async registerUser(registerData) {
-      await this.$api.auth.register(registerData);
+    registerUser(registerData) {
+      this.$api.auth.register(registerData)
+        .then(() => {
+          this.$router.push({ name: 'SignIn' });
+        })
+        .catch((e) => {
+          this.$renderVue.createAlert('error', this.$t(`errors.${e.response.data}`));
+          this.$refs.authForm.changeLoad();
+        });
     },
   },
 };
