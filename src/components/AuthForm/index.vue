@@ -1,9 +1,16 @@
 <template>
-  <validation-observer v-slot="{ handleSubmit }">
+  <validation-observer
+    v-slot="{ handleSubmit }"
+    ref="authForm"
+  >
     <form
       @submit.prevent="handleSubmit(successValidate)"
       class="auth-form"
     >
+      <preloader
+        class="auth-form__preloader"
+        v-if="isLoad"
+      />
       <input-field
         v-for="(field, index) in fields"
         :key="index"
@@ -59,11 +66,27 @@ export default {
   data() {
     return {
       fields: this.sendingFields,
+      isLoad: false,
     };
   },
   methods: {
     successValidate() {
+      this.isLoad = true;
       this.$emit('checkAuthData', serialize(this.fields));
+    },
+    changeLoad() {
+      this.isLoad = !this.isLoad;
+    },
+    clearForm() {
+      this.changeLoad();
+
+      Object.keys(this.fields).forEach((field) => {
+        this.fields[field].value = '';
+      });
+
+      this.$nextTick(() => {
+        this.$refs.authForm.reset();
+      });
     },
   },
 };
@@ -75,6 +98,12 @@ export default {
   padding: 20px;
   border: 1px solid $color-3;
   border-radius: 8px;
+  position: relative;
+  overflow: hidden;
+
+  &__preloader {
+    @include preloader--fill;
+  }
 
   &__field {
     &:not(&:last-child) {
