@@ -38,6 +38,5 @@ export default {
   .preloader {
     display: flex;
     justify-content: center;
-    margin: 30px 0;
   }
 </style>
