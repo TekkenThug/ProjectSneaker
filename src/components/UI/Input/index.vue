@@ -3,6 +3,7 @@
     tag="div"
     :rules="rules"
     v-slot="{ errors, classes }"
+    :name="name"
   >
     <div
       class="ui-input"
@@ -32,13 +33,10 @@
 </template>
 
 <script>
-import { ValidationProvider, extend, configure } from 'vee-validate';
-import * as rulesDict from 'vee-validate/dist/rules';
-import i18n from '@/services/translate/i18n';
+import { ValidationProvider, configure } from 'vee-validate';
+import initialValidate from '@/services/validate';
 
 import Icon from '@/components/UI/Icon';
-
-const PASSWORD_REGEX = new RegExp(/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])[0-9a-zA-Z]{8,}$/);
 
 export default {
   name: 'Input',
@@ -54,6 +52,10 @@ export default {
     type: {
       type: String,
       default: 'text',
+    },
+    name: {
+      type: String,
+      default: '',
     },
     value: {
       type: String,
@@ -92,22 +94,7 @@ export default {
       },
     });
 
-    extend('password', (value) => {
-      if (PASSWORD_REGEX.test(value)) {
-        return true;
-      }
-
-      return i18n.t('validations.password');
-    });
-
-    if (this.validationRules.length > 0) {
-      this.validationRules.forEach((rule) => {
-        extend(rule, {
-          ...rulesDict[rule],
-          message: i18n.t(`validations.${rule}`),
-        });
-      });
-    }
+    initialValidate();
   },
 };
 </script>
