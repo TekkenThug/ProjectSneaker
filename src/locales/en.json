@@ -28,5 +28,8 @@
 		"email": "Invalid mail format",
 		"double": "Value must be a valid decimal",
 		"image": "Invalid file type"
+	},
+	"errors": {
+		"User with this email is registered": "User with this email is registered"
 	}
 }
