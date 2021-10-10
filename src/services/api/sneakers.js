@@ -7,6 +7,7 @@ import nodeAPI from '@/configs/axios';
  * @property {string} model - model of sneakers
  * @property {string} colorway - current colorway
  * @property {string} vendorCode - vendor code of product
+ * @property {string|number} price - price of pair
  * @property {string} picture - link to picture
  * @property {string} releaseDate - worldwide release date
  */
