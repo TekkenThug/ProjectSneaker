@@ -37,5 +37,9 @@ export default {
   display: flex;
   justify-content: center;
   align-items: center;
+
+  &__view {
+    max-width: 720px;
+  }
 }
 </style>
