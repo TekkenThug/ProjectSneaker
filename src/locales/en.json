@@ -25,6 +25,8 @@
 	"What kind of sneakers are you interested in?": "What kind of sneakers are you interested in?",
 	"User registered successfully": "User registered successfully",
 	"Picture": "Picture",
+	"Approve": "Approve",
+	"Reject": "Reject",
 	"validations": {
 		"required": "Required field",
 		"email": "Invalid mail format",

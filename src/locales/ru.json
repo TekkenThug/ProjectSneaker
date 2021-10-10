@@ -25,6 +25,8 @@
 	"What kind of sneakers are you interested in?": "Какие кроссовки вас интересуют?",
 	"User registered successfully": "Пользователь успешно зарегистрирован",
 	"Picture": "Изображение",
+	"Approve": "Утвердить",
+	"Reject": "Отклонить",
 	"validations": {
 		"required": "Поле обязательно для заполнения",
 		"email": "Неверный формат почты",
