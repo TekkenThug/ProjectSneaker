@@ -35,5 +35,5 @@ export function getSneakers(stringForSearch = '', limit = 3) {
  * @returns {Promise} Status of posting
  */
 export function postSneakers(data) {
-  return nodeAPI.post('/sneakers', data);
+  return nodeAPI.post('/sneakers', data).then((res) => res.data);
 }
