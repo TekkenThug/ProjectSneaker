@@ -5,6 +5,7 @@
       link-title="For the first time? Register now"
       btn-title="Log in"
       route-to="SignUp"
+      @checkAuthData="authorize"
     />
   </div>
 </template>
@@ -18,7 +19,7 @@ export default {
   data() {
     return {
       fields: {
-        emailField: {
+        email: {
           value: '',
           placeholder: this.$t('Email'),
           validationRules: ['required', 'email'],
@@ -28,7 +29,7 @@ export default {
             name: 'email',
           },
         },
-        passwordField: {
+        password: {
           value: '',
           type: 'password',
           placeholder: this.$t('Password'),
@@ -41,6 +42,18 @@ export default {
         },
       },
     };
+  },
+  methods: {
+    authorize(data) {
+      this.$api.auth.logIn(data)
+        .then(() => {
+          this.$router.push({ name: 'Requests' });
+        })
+        .catch((e) => {
+          this.$renderVue.createAlert('error', this.$t(`errors.${e.response.data}`));
+          this.$refs.authForm.changeLoad();
+        });
+    },
   },
 };
 </script>
