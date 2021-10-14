@@ -109,12 +109,16 @@ export default {
             this.load = true;
 
             setTimeout(() => {
-              this.$api.postSneakers(dataToSend);
-
-              this.load = false;
-              this.clearForm();
-
-              this.$renderVue.createAlert('success', this.$t('Application sent'));
+              this.$api.postSneakers(dataToSend)
+                .then(() => {
+                  this.clearForm();
+                  this.$renderVue.createAlert('success', this.$t('Application sent'));
+                })
+                .catch((e) => {
+                  this.$renderVue.createAlert('error', e.response.data);
+                }).finally(() => {
+                  this.load = false;
+                });
             }, 2000);
           }
         });
