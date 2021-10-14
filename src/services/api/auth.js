@@ -11,15 +11,34 @@ import nodeAPI from '@/configs/axios';
  */
 
 /**
- * Register user
+ * Log in user data
+ *
+ * @typedef {object} LogInData
+ * @property {string} email - user email
+ * @property {string} password - password
+ */
+
+/**
+ * Send request for register new user
  *
  * @param {NewUserData} dataForRegister - new user data
- * @returns {Promise} List of sneakers
+ * @returns {Promise} Status of registration
  */
 function register(dataForRegister) {
   return nodeAPI.post('/auth/register', dataForRegister).then((res) => res.data);
 }
 
+/**
+ * Send request for log in user
+ *
+ * @param {LogInData} dataForLogIn - user log in data
+ * @returns {Promise} Status of login
+ */
+function logIn(dataForLogIn) {
+  return nodeAPI.post('/auth/login', dataForLogIn).then((res) => res.data);
+}
+
 export default {
   register,
+  logIn,
 };
