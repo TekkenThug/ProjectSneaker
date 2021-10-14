@@ -2,6 +2,7 @@
   <div class="sign-in">
     <auth-form
       :sending-fields="fields"
+      ref="authForm"
       link-title="For the first time? Register now"
       btn-title="Log in"
       route-to="SignUp"
