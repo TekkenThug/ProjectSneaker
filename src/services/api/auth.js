@@ -38,7 +38,18 @@ function logIn(dataForLogIn) {
   return nodeAPI.post('/auth/login', dataForLogIn).then((res) => res.data);
 }
 
+/**
+ * Check if user is authenticate
+ *
+ * @param {string} token - user JWT token
+ * @returns {Promise} Status of checking user
+ */
+function checkAuth(token) {
+  return nodeAPI.post('/auth/check-in', { token }).then((res) => res.data);
+}
+
 export default {
   register,
   logIn,
+  checkAuth,
 };
