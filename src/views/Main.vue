@@ -1,6 +1,6 @@
 <template>
   <div class="main">
-    <navbar :routes="routes" />
+    <navbar :routes="handlingRoutes" />
     <div class="main__view">
       <router-view />
     </div>
@@ -18,7 +18,19 @@ export default {
   data() {
     return {
       routes: routesList,
+      isAuth: false,
     };
+  },
+  created() {
+    this.$api.auth.checkAuth(localStorage.getItem('token'))
+      .then(() => {
+        this.isAuth = true;
+      });
+  },
+  computed: {
+    handlingRoutes() {
+      return !this.isAuth ? this.routes.filter((route) => !route.auth) : this.routes;
+    },
   },
 };
 </script>
