@@ -8,9 +8,10 @@
       class="requests__items"
     >
       <request-item
-        v-for="(pair, key) in pairs"
+        v-for="pair in pairs"
+        @resolving="sendResolveOfApplication($event, pair.id)"
         class="requests__item"
-        :key="key"
+        :key="pair.id"
         :sneaker-data="pair"
       />
     </div>
@@ -33,11 +34,29 @@ export default {
     };
   },
   mounted() {
-    this.$api.admin.getNotApprovedSneakers()
-      .then((res) => {
-        this.pairs = res;
-        this.isLoading = false;
-      });
+    this.sendRequestForGetApplication();
+  },
+  methods: {
+    sendResolveOfApplication(resolve, id) {
+      this.isLoading = true;
+
+      this.$api.admin.approveOrRejectSneakers(id, resolve)
+        .then((res) => {
+          this.$renderVue.createAlert('success', res);
+        }).catch((e) => {
+          this.$renderVue.createAlert('success', e.response.data);
+        }).finally(() => {
+          this.sendRequestForGetApplication();
+        });
+    },
+
+    sendRequestForGetApplication() {
+      this.$api.admin.getNotApprovedSneakers()
+        .then((res) => {
+          this.pairs = res;
+          this.isLoading = false;
+        });
+    },
   },
 };
 </script>
