@@ -1,6 +1,9 @@
 <template>
   <div class="requests">
-    <template v-if="pairs.length">
+    <div v-if="isLoading">
+      <preloader />
+    </div>
+    <template v-else-if="pairs.length">
       <request-item
         v-for="(pair, key) in pairs"
         :key="key"
@@ -21,20 +24,20 @@ export default {
   components: { RequestItem },
   data() {
     return {
+      isLoading: true,
       pairs: [],
     };
   },
   mounted() {
-    this.$api.getSneakers().then((res) => {
-      this.pairs = res;
-    });
+    this.$api.getSneakers()
+      .then((res) => {
+        this.pairs = res;
+        this.isLoading = false;
+      });
   },
 };
 </script>
 
 <style lang="scss" scoped>
-//.requests {
-//  display: flex;
-//  justify-content: space-between;
-//}
+
 </style>
