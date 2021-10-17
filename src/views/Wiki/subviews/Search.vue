@@ -17,17 +17,23 @@
     />
     <preloader
       v-if="searchData.loading"
+      class="search__preloader"
     />
     <div
       v-else
       class="search__results"
     >
-      <sneaker-card
-        v-for="(pair, index) in searchData.result"
-        class="search__result-row"
-        :key="index"
-        :product-info="pair"
-      />
+      <div v-if="searchData.isEmpty">
+        {{ $t('Sneakers not found') }}
+      </div>
+      <template v-else>
+        <sneaker-card
+          v-for="(pair, index) in searchData.result"
+          class="search__result-row"
+          :key="index"
+          :product-info="pair"
+        />
+      </template>
     </div>
     <p class="search__subtitle">
       {{ $t(`Didn't find the right one, although you know that it exists? Add it!`) }}
@@ -64,7 +70,8 @@ export default {
       searchData: {
         value: '',
         loading: false,
-        result: null,
+        result: [],
+        isEmpty: false,
       },
 
       addBtn: {
@@ -91,6 +98,7 @@ export default {
         setTimeout(async () => {
           if (this.searchData.value.trim()) {
             this.searchData.result = await this.$api.getSneakers(this.searchData.value);
+            this.searchData.isEmpty = this.searchData.result.length <= 0;
             this.searchData.loading = false;
           } else {
             this.searchData.loading = false;
@@ -118,6 +126,10 @@ export default {
     &__subtitle {
       color: rgba($color-3, .8);
       max-width: 300px;
+    }
+
+    &__preloader {
+      margin: 20px 0;
     }
 
     &__field {
