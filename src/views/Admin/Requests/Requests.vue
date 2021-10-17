@@ -3,13 +3,17 @@
     <div v-if="isLoading">
       <preloader />
     </div>
-    <template v-else-if="pairs.length">
+    <div
+      v-else-if="pairs.length"
+      class="requests__items"
+    >
       <request-item
         v-for="(pair, key) in pairs"
+        class="requests__item"
         :key="key"
         :sneaker-data="pair"
       />
-    </template>
+    </div>
     <div v-else>
       {{ $t('Sneakers not found') }}
     </div>
@@ -29,7 +33,7 @@ export default {
     };
   },
   mounted() {
-    this.$api.getSneakers()
+    this.$api.admin.getNotApprovedSneakers()
       .then((res) => {
         this.pairs = res;
         this.isLoading = false;
@@ -39,5 +43,14 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+  .requests {
+    &__items {
+      display: flex;
+      overflow-x: scroll;
+    }
 
+    &__item {
+      flex: 0 0 500px;
+    }
+  }
 </style>
