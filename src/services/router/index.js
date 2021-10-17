@@ -48,28 +48,23 @@ router.beforeEach((to, from, next) => {
   next();
 });
 
-router.beforeEach((to, from, next) => {
+router.beforeEach(async (to, from, next) => {
   const authFieldIsExist = to.matched.some((record) => record.meta.auth !== undefined);
 
   if (authFieldIsExist) {
     const authRequired = to.matched.some((record) => record.meta.auth);
+    const userIsAuth = await auth.checkAuth(localStorage.getItem('token'));
 
     if (authRequired) {
-      auth.checkAuth(localStorage.getItem('token'))
-        .then(() => {
-          next();
-        })
-        .catch(() => {
-          next({
-            name: 'SignIn',
-          });
-        });
-    } else if (localStorage.getItem('token')) {
-      next({
-        name: 'MainPage',
-      });
-    } else {
+      if (userIsAuth) {
+        next();
+      } else {
+        next({ name: 'SignIn' });
+      }
+    } else if (!userIsAuth) {
       next();
+    } else {
+      next({ path: from.path });
     }
   } else {
     next();
