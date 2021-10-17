@@ -1,5 +1,6 @@
 import Vue from 'vue';
 import VueRouter from 'vue-router';
+import auth from '@/services/api/auth';
 
 import Main from '@/views/Main';
 import mainPageRoutes from './mainPage';
@@ -25,6 +26,7 @@ const routes = [
     component: Auth,
     meta: {
       title: 'Auth',
+      auth: false,
     },
     redirect: {
       name: 'SignIn',
@@ -44,6 +46,32 @@ const generateTitle = (title) => `ProjectSneaker_${title}`;
 router.beforeEach((to, from, next) => {
   document.title = generateTitle(to.meta.title);
   next();
+});
+
+router.beforeEach((to, from, next) => {
+  const authFieldIsExist = to.matched.some((record) => record.meta.auth !== undefined);
+
+  if (authFieldIsExist) {
+    const authRequired = to.matched.some((record) => record.meta.auth);
+
+    if (authRequired) {
+      auth.checkAuth(localStorage.getItem('token'))
+        .then(() => {
+          next();
+        })
+        .catch(() => {
+          next({
+            name: 'SignIn',
+          });
+        });
+    } else {
+      next({
+        path: from.path,
+      });
+    }
+  } else {
+    next();
+  }
 });
 
 export default router;
