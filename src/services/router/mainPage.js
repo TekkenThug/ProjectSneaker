@@ -21,6 +21,9 @@ export default [
     path: '/admin',
     name: 'Admin',
     component: Admin,
+    meta: {
+      auth: true,
+    },
     redirect: {
       name: 'Requests',
     },
