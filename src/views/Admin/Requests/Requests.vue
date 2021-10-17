@@ -1,10 +1,15 @@
 <template>
   <div class="requests">
-    <request-item
-      v-for="(pair, key) in pairs"
-      :key="key"
-      :sneaker-data="pair"
-    />
+    <template v-if="pairs.length">
+      <request-item
+        v-for="(pair, key) in pairs"
+        :key="key"
+        :sneaker-data="pair"
+      />
+    </template>
+    <div v-else>
+      {{ $t('Sneakers not found') }}
+    </div>
   </div>
 </template>
 
@@ -16,7 +21,7 @@ export default {
   components: { RequestItem },
   data() {
     return {
-      pairs: null,
+      pairs: [],
     };
   },
   mounted() {
