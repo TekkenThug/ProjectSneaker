@@ -27,6 +27,7 @@
 	"Picture": "Picture",
 	"Approve": "Approve",
 	"Reject": "Reject",
+	"Sneakers not found": "Sneakers not found",
 	"validations": {
 		"required": "Required field",
 		"email": "Invalid mail format",
