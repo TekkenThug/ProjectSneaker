@@ -64,10 +64,12 @@ router.beforeEach((to, from, next) => {
             name: 'SignIn',
           });
         });
-    } else {
+    } else if (localStorage.getItem('token')) {
       next({
-        path: from.path,
+        name: 'MainPage',
       });
+    } else {
+      next();
     }
   } else {
     next();
