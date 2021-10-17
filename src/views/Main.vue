@@ -1,6 +1,6 @@
 <template>
   <div class="main">
-    <navbar :routes="handlingRoutes" />
+    <navbar :routes="sanitizeRoutes" />
     <div class="main__view">
       <router-view />
     </div>
@@ -28,7 +28,7 @@ export default {
       });
   },
   computed: {
-    handlingRoutes() {
+    sanitizeRoutes() {
       return !this.isAuth ? this.routes.filter((route) => !route.auth) : this.routes;
     },
   },
