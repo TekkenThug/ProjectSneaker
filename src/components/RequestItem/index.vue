@@ -66,6 +66,9 @@ export default {
   border: 2px solid $color-4;
   border-radius: 8px;
   width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 
   &__title {
     font-size: 24px;
@@ -127,6 +130,7 @@ export default {
     padding: 8px 10px;
     display: block;
     width: 100%;
+    margin-top: auto;
 
     &:not(:last-of-type) {
       margin-bottom: 5px;
