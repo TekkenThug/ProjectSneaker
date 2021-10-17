@@ -47,7 +47,8 @@ export default {
   methods: {
     authorize(data) {
       this.$api.auth.logIn(data)
-        .then(() => {
+        .then((res) => {
+          localStorage.setItem('token', res.token);
           this.$router.push({ name: 'Requests' });
         })
         .catch((e) => {
