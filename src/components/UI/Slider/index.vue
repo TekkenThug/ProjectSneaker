@@ -35,6 +35,10 @@ export default {
   .swiper {
     max-width: 500px;
 
+    @media (max-width: $mobile) {
+      max-width: 300px;
+    }
+
     &-slide {
       height: auto;
     }
