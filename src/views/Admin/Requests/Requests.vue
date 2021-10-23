@@ -7,13 +7,15 @@
       v-else-if="pairs.length"
       class="requests__items"
     >
-      <request-item
-        v-for="pair in pairs"
-        @resolving="sendResolveOfApplication($event, pair.id)"
-        class="requests__item"
-        :key="pair.id"
-        :sneaker-data="pair"
-      />
+      <slider>
+        <request-item
+          v-for="pair in pairs"
+          @resolving="sendResolveOfApplication($event, pair.id)"
+          class="requests__item swiper-slide"
+          :key="pair.id"
+          :sneaker-data="pair"
+        />
+      </slider>
     </div>
     <div v-else>
       {{ $t('Sneakers not found') }}
@@ -22,11 +24,12 @@
 </template>
 
 <script>
+import Slider from '@/components/UI/Slider';
 import RequestItem from '@/components/RequestItem';
 
 export default {
   name: 'Requests',
-  components: { RequestItem },
+  components: { RequestItem, Slider },
   data() {
     return {
       isLoading: true,
@@ -60,16 +63,3 @@ export default {
   },
 };
 </script>
-
-<style lang="scss" scoped>
-  .requests {
-    &__items {
-      display: flex;
-      overflow-x: scroll;
-    }
-
-    &__item {
-      flex: 0 0 500px;
-    }
-  }
-</style>
