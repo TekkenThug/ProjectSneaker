@@ -46,12 +46,10 @@ export default {
   },
   methods: {
     authorize(data) {
-      this.$api.auth.logIn(data)
-        .then((res) => {
-          localStorage.setItem('token', res.token);
+      this.$store.dispatch('auth/logIn', data)
+        .then(() => {
           this.$router.push({ name: 'Requests' });
-        })
-        .catch((e) => {
+        }).catch((e) => {
           this.$renderVue.createAlert('error', this.$t(`errors.${e.response.data}`));
           this.$refs.authForm.changeLoad();
         });
