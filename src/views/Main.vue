@@ -14,22 +14,18 @@ import Navbar from '@/components/Navbar';
 
 export default {
   name: 'Main',
+
   components: { Navbar },
+
   data() {
     return {
       routes: routesList,
-      isAuth: false,
     };
   },
-  created() {
-    this.$api.auth.checkAuth(localStorage.getItem('token'))
-      .then(() => {
-        this.isAuth = true;
-      });
-  },
+
   computed: {
     sanitizeRoutes() {
-      return !this.isAuth ? this.routes.filter((route) => !route.auth) : this.routes;
+      return !this.$store.state.auth.isAuth ? this.routes.filter((route) => !route.auth) : this.routes;
     },
   },
 };
