@@ -1,4 +1,5 @@
 /* eslint-disable no-shadow */
+/* eslint-disable jsdoc/check-param-names */
 import axios from '@/configs/axios';
 
 import { UPDATE_TOKENS } from './mutation-types';
@@ -33,6 +34,21 @@ const actions = {
    */
   logIn({ commit }, dataForLogIn) {
     return axios.post('/auth/login', dataForLogIn)
+      .then((res) => res.data)
+      .then((tokens) => {
+        commit(UPDATE_TOKENS, tokens);
+      });
+  },
+
+  /**
+   * Send request for refresh tokens
+   *
+   * @param {Function} commit - calling mutation
+   * @param {object} state - current state
+   * @returns {Promise} Promise for frontend
+   */
+  refresh({ commit, state }) {
+    return axios.post('/auth/refresh', state.refreshToken)
       .then((res) => res.data)
       .then((tokens) => {
         commit(UPDATE_TOKENS, tokens);
