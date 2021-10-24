@@ -1,10 +1,13 @@
 import Vue from 'vue';
-import App from './App.vue';
-import './styles/tailwind.scss';
+import App from '@/App.vue';
+
+/** Global styles */
+import '@/styles/tailwind.scss';
 
 /** Vue tools */
-import router from './services/router';
-import i18n from './services/translate/i18n';
+import router from '@/services/router';
+import store from '@/store/store';
+import i18n from '@/services/translate/i18n';
 
 /** Plugins */
 import apiPlugin from '@/plugins/apiPlugin';
@@ -22,6 +25,7 @@ Vue.config.productionTip = false;
 
 new Vue({
   router,
+  store,
   i18n,
   render: (h) => h(App),
 }).$mount('#app');
