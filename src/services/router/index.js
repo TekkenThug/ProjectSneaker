@@ -1,6 +1,6 @@
 import Vue from 'vue';
 import VueRouter from 'vue-router';
-import auth from '@/services/api/auth';
+import storeState from '@/services/storeState';
 
 import Main from '@/views/Main';
 import mainPageRoutes from './mainPage';
@@ -53,19 +53,12 @@ router.beforeEach(async (to, from, next) => {
 
   if (authFieldIsExist) {
     const authRequired = to.matched.some((record) => record.meta.auth);
-    const userIsAuth = await auth.checkAuth(localStorage.getItem('token'));
 
     if (authRequired) {
-      if (userIsAuth) {
-        next();
-      } else {
-        next({ name: 'SignIn' });
-      }
-    } else if (!userIsAuth) {
-      next();
-    } else {
-      next({ path: from.path });
-    }
+      if (storeState.getAuthStatus()) next();
+      else next({ name: 'SignIn' });
+    } else if (!storeState.getAuthStatus()) next();
+    else next({ path: from.path });
   } else {
     next();
   }
