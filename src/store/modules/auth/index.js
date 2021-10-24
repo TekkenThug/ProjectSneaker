@@ -2,7 +2,7 @@
 /* eslint-disable jsdoc/check-param-names */
 import axios from '@/configs/axios';
 
-import { UPDATE_TOKENS } from './mutation-types';
+import { UPDATE_TOKENS, SET_USER_AUTH } from './mutation-types';
 
 /**
  * Log in user data
@@ -13,14 +13,36 @@ import { UPDATE_TOKENS } from './mutation-types';
  */
 
 const state = {
+  /**
+   * User access token
+   *
+   * @type {string}
+   */
   token: '',
+
+  /**
+   * User refresh token
+   *
+   * @type {string}
+   */
   refreshToken: '',
+
+  /**
+   * If user is authenticate
+   *
+   * @type {boolean}
+   */
+  isAuth: false,
 };
 
 const mutations = {
   [UPDATE_TOKENS](state, { token, refreshToken }) {
     state.token = token;
     state.refreshToken = refreshToken;
+  },
+
+  [SET_USER_AUTH](state, value) {
+    state.isAuth = value;
   },
 };
 
@@ -37,6 +59,7 @@ const actions = {
       .then((res) => res.data)
       .then((tokens) => {
         commit(UPDATE_TOKENS, tokens);
+        commit(SET_USER_AUTH, true);
       });
   },
 
@@ -52,6 +75,7 @@ const actions = {
       .then((res) => res.data)
       .then((tokens) => {
         commit(UPDATE_TOKENS, tokens);
+        commit(SET_USER_AUTH, true);
       });
   },
 
@@ -67,6 +91,7 @@ const actions = {
       .then((res) => res.data)
       .then(() => {
         commit(UPDATE_TOKENS, { token: '', refreshToken: '' });
+        commit(SET_USER_AUTH, false);
       });
   },
 };
