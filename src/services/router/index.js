@@ -53,11 +53,12 @@ router.beforeEach(async (to, from, next) => {
 
   if (authFieldIsExist) {
     const authRequired = to.matched.some((record) => record.meta.auth);
+    const authState = await storeState.getAuthStatus();
 
     if (authRequired) {
-      if (storeState.getAuthStatus()) next();
+      if (authState) next();
       else next({ name: 'SignIn' });
-    } else if (!storeState.getAuthStatus()) next();
+    } else if (!authState) next();
     else next({ path: from.path });
   } else {
     next();
