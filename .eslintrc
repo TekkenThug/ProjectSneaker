@@ -19,6 +19,8 @@
     "arrow-body-style": "off",
     "no-param-reassign": "off",
     "prefer-destructuring": "off",
+    "jsdoc/newline-after-description": "off",
+    "jsdoc/require-returns-description": "off",
     "max-len": [
       "error",
       {
