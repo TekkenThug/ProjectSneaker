@@ -6,7 +6,7 @@
         alt="logotype"
       >
     </div>
-    <navbar-list :routes="routes" />
+    <navbar-list />
   </div>
 </template>
 
@@ -15,14 +15,8 @@ import NavbarList from './navbar-list';
 
 export default {
   name: 'Navbar',
-  components: { NavbarList },
 
-  props: {
-    routes: {
-      type: Array,
-      required: true,
-    },
-  },
+  components: { NavbarList },
 };
 </script>
 
