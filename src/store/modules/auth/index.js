@@ -6,7 +6,6 @@ import { UPDATE_TOKENS, SET_USER_AUTH } from './mutation-types';
 
 /**
  * Log in user data
- *
  * @typedef {object} LogInData
  * @property {string} email - user email
  * @property {string} password - password
@@ -15,21 +14,18 @@ import { UPDATE_TOKENS, SET_USER_AUTH } from './mutation-types';
 const state = {
   /**
    * User access token
-   *
    * @type {string}
    */
   token: '',
 
   /**
    * User refresh token
-   *
    * @type {string}
    */
   refreshToken: '',
 
   /**
    * If user is authenticate
-   *
    * @type {boolean}
    */
   isAuth: false,
@@ -49,7 +45,6 @@ const mutations = {
 const actions = {
   /**
    * Send request for log in user
-   *
    * @param {Function} commit - calling mutation
    * @param {LogInData} dataForLogIn - user log in data
    * @returns {Promise} Promise for frontend
@@ -64,8 +59,26 @@ const actions = {
   },
 
   /**
+   * Send request for checking user auth state
+   * @param {Function} commit - calling mutation
+   * @param {object} state - current state
+   * @returns {Promise} Promise for frontend
+   */
+  checkIn({ commit, state }) {
+    return axios.post('/auth/check', { token: state.token })
+      .then((res) => res.data)
+      .then((data) => {
+        commit(SET_USER_AUTH, data.auth);
+        return state.isAuth;
+      })
+      .catch((e) => {
+        commit(SET_USER_AUTH, e.response.data.auth ?? false);
+        return state.isAuth;
+      });
+  },
+
+  /**
    * Send request for refresh tokens
-   *
    * @param {Function} commit - calling mutation
    * @param {object} state - current state
    * @returns {Promise} Promise for frontend
@@ -76,18 +89,20 @@ const actions = {
       .then((tokens) => {
         commit(UPDATE_TOKENS, tokens);
         commit(SET_USER_AUTH, true);
+      })
+      .catch((e) => {
+        commit(SET_USER_AUTH, e.response.data.auth ?? false);
       });
   },
 
   /**
    * Send request for log in user
-   *
    * @param {Function} commit - calling mutation
    * @param {string} userID - user ID who want logout
    * @returns {Promise} Promise for frontend
    */
-  logOut({ commit }, userID) {
-    return axios.post('/auth/logout', userID)
+  logOut({ commit, state }) {
+    return axios.post('/auth/logout', { token: state.token })
       .then((res) => res.data)
       .then(() => {
         commit(UPDATE_TOKENS, { token: '', refreshToken: '' });
