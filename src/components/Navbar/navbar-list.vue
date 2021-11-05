@@ -44,8 +44,15 @@ export default {
   },
 
   methods: {
+    /**
+     * Logout user, if success - redirect to main page
+     * @returns {void}
+     */
     logoutUser() {
-      this.$store.dispatch('auth/logOut');
+      this.$store.dispatch('auth/logOut')
+        .then(() => {
+          this.$router.push({ name: 'MainPage' });
+        });
     },
   },
 };
