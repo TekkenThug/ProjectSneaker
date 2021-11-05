@@ -1,8 +1,18 @@
 <template>
-  <li class="navbar__item">
-    <router-link :to="link">
+  <li
+    @click="$emit('click')"
+    class="navbar__item"
+  >
+    <router-link
+      v-if="link"
+      :to="link"
+    >
       {{ name }}
     </router-link>
+
+    <span v-else>
+      {{ name }}
+    </span>
   </li>
 </template>
 
@@ -15,13 +25,9 @@ export default {
       type: String,
     },
     link: {
-      required: true,
       type: String,
+      default: '',
     },
   },
 };
 </script>
-
-<style lang="scss" scoped>
-
-</style>
