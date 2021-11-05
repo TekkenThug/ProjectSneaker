@@ -1,6 +1,6 @@
 <template>
   <div class="main">
-    <navbar :routes="sanitizeRoutes" />
+    <navbar />
     <div class="main__view">
       <router-view />
     </div>
@@ -8,26 +8,12 @@
 </template>
 
 <script>
-import routesList from '@/configs/router';
-
 import Navbar from '@/components/Navbar';
 
 export default {
   name: 'Main',
 
   components: { Navbar },
-
-  data() {
-    return {
-      routes: routesList,
-    };
-  },
-
-  computed: {
-    sanitizeRoutes() {
-      return !this.$store.state.auth.isAuth ? this.routes.filter((route) => !route.auth) : this.routes;
-    },
-  },
 };
 </script>
 
