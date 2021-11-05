@@ -1,10 +1,26 @@
 <template>
   <ul class="navbar__list">
     <navbar-item
-      v-for="route in routes"
-      :key="route.link"
-      :name="route.name"
-      :link="route.link"
+      name="Wiki"
+      link="/wiki"
+    />
+
+    <template v-if="userIsAuth">
+      <navbar-item
+        name="Requests"
+        link="/admin"
+      />
+
+      <navbar-item
+        name="Logout"
+        @click="logoutUser"
+      />
+    </template>
+
+    <navbar-item
+      v-if="!userIsAuth"
+      name="Login"
+      link="/auth"
     />
   </ul>
 </template>
@@ -14,11 +30,22 @@ import NavbarItem from './navbar-item';
 
 export default {
   name: 'NavbarList',
+
   components: { NavbarItem },
-  props: {
-    routes: {
-      required: true,
-      type: Array,
+
+  computed: {
+    /**
+     * Get user auth state
+     * @returns {boolean}
+     */
+    userIsAuth() {
+      return this.$store.state.auth.isAuth;
+    },
+  },
+
+  methods: {
+    logoutUser() {
+      this.$store.dispatch('auth/logOut');
     },
   },
 };
@@ -33,6 +60,7 @@ export default {
       @include trans;
 
       color: $color-0;
+      cursor: pointer;
 
       &:hover {
         color: $color-1;
