@@ -1,6 +1,9 @@
 import Vue from 'vue';
 import App from '@/App';
 
+/** Global styles */
+import '@/styles/global.scss';
+
 /** Vue tools */
 import router from '@/services/router';
 import store from '@/store/store';
