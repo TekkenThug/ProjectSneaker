@@ -1,8 +1,5 @@
 import Vue from 'vue';
-import App from '@/App.vue';
-
-/** Global styles */
-import '@/styles/tailwind.scss';
+import App from '@/App';
 
 /** Vue tools */
 import router from '@/services/router';
@@ -14,7 +11,7 @@ import apiPlugin from '@/plugins/apiPlugin';
 import renderVuePlugin from '@/plugins/renderVuePlugin';
 
 /** Global components */
-import Preloader from '@/components/UI/_Preloader/Preloader';
+import Preloader from '@/components/UI/Preloader';
 
 Vue.use(apiPlugin);
 Vue.use(renderVuePlugin);
