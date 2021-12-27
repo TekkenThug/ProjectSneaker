@@ -3,9 +3,9 @@ module.exports = {
     loaderOptions: {
       sass: {
         additionalData: `
-                  @import "@/styles/variables/_colors.scss";
-                  @import "@/styles/variables/_layout.scss";
-                  @import "@/styles/mixins/_mixins.scss";
+                  @import "@/styles/colors.scss";
+                  @import "@/styles/layout.scss";
+                  @import "@/styles/mixins.scss";
                 `,
       },
     },
