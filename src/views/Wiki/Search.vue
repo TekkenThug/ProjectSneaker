@@ -110,7 +110,9 @@ export default {
 };
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss">
+  @import "~@/styles/variables";
+
   .search {
     display: flex;
     flex-direction: column;

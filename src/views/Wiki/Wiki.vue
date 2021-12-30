@@ -15,7 +15,7 @@ export default {
 };
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss">
   .wiki {
     text-align: center;
     max-width: 960px;

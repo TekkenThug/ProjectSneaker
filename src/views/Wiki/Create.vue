@@ -154,7 +154,9 @@ export default {
 };
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss">
+  @import "~@/styles/variables";
+
   .add-form {
     width: 100%;
     max-width: 480px;

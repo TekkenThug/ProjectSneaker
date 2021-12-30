@@ -21,7 +21,9 @@ export default {
 };
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss">
+@import "~@/styles/variables";
+
 .app-view {
   min-height: 100vh;
   display: flex;

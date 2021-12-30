@@ -17,7 +17,9 @@ export default {
 };
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss">
+@import "~@/styles/variables";
+
 .navbar {
   position: fixed;
   top: 0;
