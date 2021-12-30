@@ -15,3 +15,13 @@ body {
     color: $color-5;
     background-color: $color-2;
 }
+
+/** Global classes */
+.slide-enter-active, .slide-leave-active {
+    transition: all .3s;
+}
+
+.slide-enter, .slide-leave-to {
+    opacity: 0;
+    transform: translateX(-50px);
+}

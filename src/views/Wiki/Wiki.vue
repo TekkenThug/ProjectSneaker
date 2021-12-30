@@ -1,6 +1,9 @@
 <template>
   <div class="wiki">
-    <transition name="slide">
+    <transition
+      mode="out-in"
+      name="slide"
+    >
       <router-view />
     </transition>
   </div>
@@ -19,14 +22,5 @@ export default {
     width: 100%;
     display: flex;
     justify-content: center;
-
-    .slide-enter-active, .slide-leave-active {
-      transition: all .5s;
-    }
-    .slide-enter, .slide-leave-to {
-      position: absolute;
-      opacity: 0;
-      transform: translateX(-50px);
-    }
   }
 </style>
