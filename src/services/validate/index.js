@@ -8,7 +8,7 @@ export default () => {
   Object.keys(rules).forEach((rule) => {
     extend(rule, {
       ...rules[rule],
-      message: i18n.t(`validations.${rule}`),
+      message: i18n.te(`validations.${rule}`) ? i18n.t(`validations.${rule}`) : '',
     });
   });
 
