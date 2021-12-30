@@ -49,6 +49,11 @@ router.beforeEach((to, from, next) => {
 });
 
 router.beforeEach(async (to, from, next) => {
+  if (process.env.NODE_ENV === 'development') {
+    next();
+    return;
+  }
+
   const authFieldIsExist = to.matched.some((record) => record.meta.auth !== undefined);
 
   if (authFieldIsExist) {
