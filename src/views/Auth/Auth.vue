@@ -22,6 +22,8 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+  @import "~@/styles/variables";
+
   .auth {
     width: 100%;
     display: flex;
