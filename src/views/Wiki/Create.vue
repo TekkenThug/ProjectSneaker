@@ -199,16 +199,8 @@ export default {
     }
 
     &__field {
-      flex: 0 0 48%;
+      flex-basis: 100%;
       margin-bottom: 10px;
-
-      &:nth-child(2n) {
-        margin-left: 10px;
-      }
-
-      &:last-child {
-        flex-basis: 100%;
-      }
     }
 
     &__submit {
