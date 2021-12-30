@@ -1,16 +1,4 @@
 module.exports = {
-  css: {
-    loaderOptions: {
-      sass: {
-        additionalData: `
-                  @import "@/styles/colors.scss";
-                  @import "@/styles/layout.scss";
-                  @import "@/styles/mixins.scss";
-                `,
-      },
-    },
-  },
-
   chainWebpack: (config) => {
     config.module
       .rule('svg-sprite')
