@@ -59,6 +59,9 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+  @import "~@/styles/variables";
+  @import "~@/styles/mixins";
+
   .navbar__list {
     display: flex;
     font-size: 18px;

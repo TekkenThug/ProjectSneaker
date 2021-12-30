@@ -61,6 +61,8 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+@import "~@/styles/variables";
+
 .request {
   padding: $paddingForms;
   border: 2px solid $color-4;

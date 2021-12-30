@@ -80,6 +80,8 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+  @import "~@/styles/variables";
+
   .alert {
     padding: 10px 30px 10px 15px;
     border-radius: 5px;

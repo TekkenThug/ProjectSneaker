@@ -21,6 +21,8 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+  @import "~@/styles/variables";
+
   .navbar {
     padding: 15px 30px;
     display: flex;

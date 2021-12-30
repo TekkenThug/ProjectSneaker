@@ -93,6 +93,9 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+@import "~@/styles/variables";
+@import "~@/styles/mixins";
+
 .auth-form {
   margin-top: 40px;
   padding: 20px;

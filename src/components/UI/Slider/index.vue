@@ -32,6 +32,8 @@ export default {
 </script>
 
 <style lang="scss">
+  @import "~@/styles/variables";
+
   .swiper {
     max-width: 500px;
 
