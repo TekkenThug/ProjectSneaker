@@ -33,7 +33,7 @@
 		"email": "Invalid mail format",
 		"double": "Value must be a valid decimal",
 		"image": "Invalid file type",
-		"password": "Password must be at least 8 characters, at least one digit< lower and uppercase letter",
+		"password": "Password must be at least 8 characters, at least one digit, lower and uppercase letter",
 		"passwordConfirm": "Password confirmation does not match"
 	},
 	"errors": {
