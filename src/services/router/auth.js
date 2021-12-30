@@ -1,5 +1,5 @@
-import SignIn from '@/views/Auth/subviews/SignIn';
-import SignUp from '@/views/Auth/subviews/SignUp';
+import SignIn from '@/views/Auth/SignIn';
+import SignUp from '@/views/Auth/SignUp';
 
 export default [
   {
