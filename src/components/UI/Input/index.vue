@@ -176,6 +176,7 @@ export default {
       color: $color-4;
       font-weight: 700;
       margin-top: 5px;
+      text-align: left;
     }
   }
 </style>
