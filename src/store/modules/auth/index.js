@@ -65,7 +65,7 @@ const actions = {
    * @returns {Promise} Promise for frontend
    */
   checkIn({ commit, state }) {
-    return axios.post('/auth/check', { token: state.token })
+    return axios.post('/auth/check')
       .then((res) => res.data)
       .then((data) => {
         commit(SET_USER_AUTH, data.auth);
@@ -101,8 +101,8 @@ const actions = {
    * @param {string} userID - user ID who want logout
    * @returns {Promise} Promise for frontend
    */
-  logOut({ commit, state }) {
-    return axios.post('/auth/logout', { token: state.token })
+  logOut({ commit }) {
+    return axios.post('/auth/logout')
       .then((res) => res.data)
       .then(() => {
         commit(UPDATE_TOKENS, { token: '', refreshToken: '' });
