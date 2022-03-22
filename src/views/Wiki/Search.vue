@@ -5,9 +5,11 @@
     <h1 class="search__title">
       {{ $t('Discover the world of sneakers') }}
     </h1>
+
     <p class="search__subtitle">
       {{ $t('Find the pair you need!') }}
     </p>
+
     <search-field
       class="search__field"
       :placeholder="$t('What kind of sneakers are you interested in?')"
@@ -15,10 +17,12 @@
       v-model="searchData.value"
       @input="getSearchingSneakers"
     />
+
     <preloader
       v-if="searchData.loading"
       class="search__preloader"
     />
+
     <div
       v-else
       class="search__results"
@@ -26,6 +30,7 @@
       <div v-if="searchData.isEmpty">
         {{ $t('Sneakers not found') }}
       </div>
+
       <template v-else>
         <sneaker-card
           v-for="(pair, index) in searchData.result"
@@ -35,9 +40,11 @@
         />
       </template>
     </div>
+
     <p class="search__subtitle">
       {{ $t(`Didn't find the right one, although you know that it exists? Add it!`) }}
     </p>
+
     <btn
       @click="goToCreatePage"
       class="search__add-btn"

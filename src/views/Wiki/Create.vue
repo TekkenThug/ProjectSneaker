@@ -8,18 +8,21 @@
         v-if="load"
         class="add-form__load"
       />
+
       <h3
         v-show="title"
         class="add-form__title"
       >
         {{ title }}
       </h3>
+
       <p
         v-show="subtitle"
         class="add-form__subtitle"
       >
         {{ subtitle }}
       </p>
+
       <div class="add-form__fields">
         <inputField
           class="add-form__field"
@@ -30,10 +33,12 @@
           @input="field.error = false"
         />
       </div>
+
       <drag
         @fileUpload="setUploadedFile"
         ref="imageDrag"
       />
+
       <submit-btn
         class="add-form__submit"
         :title="$t('Send')"
