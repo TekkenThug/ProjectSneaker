@@ -15,6 +15,7 @@
           d="M64 9.75A54.25 54.25 0 0 0 9.75 64H0a64 64 0 0 1 128 0h-9.75A54.25 54.25 0 0 0 64 9.75z"
           fill="#f67571"
         />
+
         <animateTransform
           attributeName="transform"
           type="rotate"
