@@ -18,6 +18,9 @@ export default {
   name: 'Card',
 
   props: {
+    /**
+     * Product info object
+     */
     productInfo: {
       type: Object,
       default() {
