@@ -3,21 +3,26 @@
     <h3 class="request__title">
       {{ sneakerData.model }}
     </h3>
+
     <div class="request__info">
       <div class="request__info-fields">
         <div class="request__info-field">
           {{ $t('Colorway') }}: <span class="value">{{ sneakerData.colorway }}</span>
         </div>
+
         <div class="request__info-field">
           {{ $t('Price') }}: <span class="value">{{ sneakerData.price }}</span>
         </div>
+
         <div class="request__info-field">
           {{ $t('Vendor code') }}: <span class="value">{{ sneakerData.vendorCode }}</span>
         </div>
+
         <div class="request__info-field">
           {{ $t('Release date') }}: <span class="value">{{ sneakerData.releaseDate }}</span>
         </div>
       </div>
+
       <div class="request__info-image">
         <img
           :src="sneakerData.picture"
@@ -25,12 +30,14 @@
         >
       </div>
     </div>
+
     <div class="request__actions">
       <btn
         @click="sendResolve(true)"
         :title="$t('Approve')"
         class="request__action request__action--resolve"
       />
+
       <btn
         @click="sendResolve(false)"
         :title="$t('Reject')"
@@ -45,14 +52,21 @@ import Btn from '@/components/UI/Button';
 
 export default {
   name: 'RequestItem',
+
   components: { Btn },
+
   props: {
     sneakerData: {
       type: Object,
       required: true,
     },
   },
+
   methods: {
+    /**
+     * Send resolve to the server
+     * @param {boolean} resolve - boolean resolve
+     */
     sendResolve(resolve) {
       this.$emit('resolving', resolve);
     },
