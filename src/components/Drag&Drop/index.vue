@@ -20,9 +20,11 @@
         class="drag__input"
         type="file"
       >
+
       <span v-if="fileInstance">
         {{ fileInstance.name }}
       </span>
+
       <span
         v-else
         class="drag__default"
@@ -31,6 +33,7 @@
           class="drag__default-icon"
           :icon-data="iconData"
         />
+
         <b class="drag__default-title">
           {{ errors.length ? errors[0] : $t(title) }}
         </b>
@@ -47,25 +50,50 @@ import i18n from '@/services/translate/i18n';
 
 export default {
   name: 'Draggable',
+
   components: { Icon, ValidationProvider },
+
   props: {
+    /**
+     * Title for drag&drop
+     */
     title: {
       type: String,
       default: 'Insert the image of the sneakers',
     },
   },
+
   data() {
     return {
+      /**
+       * Data for icon component
+       * @type {object}
+       */
       iconData: {
         width: 32,
         height: 32,
         name: 'image-add',
       },
+
+      /**
+       * File is entered
+       * @type {boolean}
+       */
       entered: false,
+
+      /**
+       * Entered file object
+       * @type {File}
+       */
       fileInstance: null,
     };
   },
   methods: {
+    /**
+     * Handler for file selection
+     * @param {Event} event - selection event
+     * @returns {Promise<void>}
+     */
     async fileHandler(event) {
       const files = Array.from(event.dataTransfer?.files || event.target.files);
       const { valid } = await this.$refs.dragUploader.validate(files);
@@ -78,11 +106,17 @@ export default {
       }
     },
 
+    /**
+     * Clear file instance
+     * @returns {void}
+     */
     clearDrop() {
       this.fileInstance = null;
     },
   },
+
   created() {
+    /** Set validation rule for image */
     extend('image', {
       ...image,
       message: i18n.t('validations.image'),
