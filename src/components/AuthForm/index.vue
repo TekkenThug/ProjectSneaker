@@ -11,6 +11,7 @@
         class="auth-form__preloader"
         v-if="isLoad"
       />
+
       <input-field
         v-for="(field, index) in fields"
         :key="index"
@@ -18,10 +19,12 @@
         v-bind="field"
         v-model="field.value"
       />
+
       <btn
         class="auth-form__submit"
         :title="$t(btnTitle)"
       />
+
       <router-link
         :to="{ name: routeTo }"
         class="auth-form__link"
@@ -40,43 +43,85 @@ import Btn from '@/components/UI/Button';
 
 export default {
   name: 'AuthForm',
+
   components: {
     InputField,
     Btn,
     ValidationObserver,
   },
+
   props: {
+    /**
+     * Link title for change sign in/sign up view
+     */
     linkTitle: {
       type: String,
       default: '',
     },
+
+    /**
+     * Button title for sign in/sign up
+     */
     btnTitle: {
       type: String,
       default: '',
     },
+
+    /**
+     * Fields for sending to server
+     */
     sendingFields: {
       type: Object,
       default: () => {},
     },
+
+    /**
+     * Route to link
+     */
     routeTo: {
       type: String,
       default: '',
     },
   },
+
   data() {
     return {
+      /**
+       * Available fields
+       * @type {object}
+       */
       fields: this.sendingFields,
+
+      /**
+       * Loading state
+       * @type {boolean}
+       */
       isLoad: false,
     };
   },
+
   methods: {
+    /**
+     * Success validate handler
+     * @returns {void}
+     */
     successValidate() {
       this.isLoad = true;
       this.$emit('checkAuthData', serialize(this.fields));
     },
+
+    /**
+     * Change load field state
+     * @returns {void}
+     */
     changeLoad() {
       this.isLoad = !this.isLoad;
     },
+
+    /**
+     * Clear form
+     * @returns {void}
+     */
     clearForm() {
       this.changeLoad();
 
