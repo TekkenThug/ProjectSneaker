@@ -3,6 +3,7 @@
     <div v-if="isLoading">
       <preloader />
     </div>
+
     <div
       v-else-if="pairs.length"
       class="requests__items"
@@ -17,6 +18,7 @@
         />
       </slider>
     </div>
+
     <div v-else>
       {{ $t('Sneakers not found') }}
     </div>
@@ -32,14 +34,30 @@ export default {
   components: { RequestItem, Slider },
   data() {
     return {
+      /**
+       * Loading state
+       * @type {boolean}
+       */
       isLoading: true,
+
+      /**
+       * Available pairs
+       * @type {object[]}
+       */
       pairs: [],
     };
   },
   mounted() {
+    /** Get pairs */
     this.sendRequestForGetApplication();
   },
   methods: {
+    /**
+     * Send resolving
+     * @param {boolean} resolve - resolving
+     * @param {string} id - pair id
+     * @returns {void}
+     */
     sendResolveOfApplication(resolve, id) {
       this.isLoading = true;
 
@@ -53,6 +71,10 @@ export default {
         });
     },
 
+    /**
+     * Get pairs
+     * @returns {void}
+     */
     sendRequestForGetApplication() {
       this.$api.admin.getNotApprovedSneakers()
         .then((res) => {
