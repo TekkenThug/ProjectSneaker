@@ -8,6 +8,7 @@
         :icon-data="getIconsData"
         :class="this.msgType"
       />
+
       <div class="alert__content">
         <h4 class="alert__title">
           {{ title }}
@@ -16,6 +17,7 @@
           <slot />
         </p>
       </div>
+
       <span
         @click="close"
         class="alert__close"
@@ -39,19 +41,33 @@ const ALERT_CLOSE_DELAY = 5000;
 
 export default {
   name: 'Alert',
+
   components: { Icon },
+
   props: {
+    /**
+     * Alert title
+     */
     title: {
       type: String,
       required: true,
     },
+
+    /**
+     * Message type
+     */
     msgType: {
       type: String,
       required: true,
     },
   },
+
   data() {
     return {
+      /**
+       * Available icon presets
+       * @type {object}
+       */
       iconsPresets: {
         warning: 'warning',
         success: 'success',
@@ -60,17 +76,29 @@ export default {
       },
     };
   },
+
   mounted() {
+    /** Close alert after delay */
     setTimeout(() => {
       this.close();
     }, ALERT_CLOSE_DELAY);
   },
+
   computed: {
+    /**
+     * Returns object with icon sizes
+     * @returns {{width: number, name: *, height: number}}
+     */
     getIconsData() {
       return { width: 18, height: 18, name: this.iconsPresets[this.msgType] };
     },
   },
+
   methods: {
+    /**
+     * Close alert
+     * @type {void}
+     */
     close() {
       this.$destroy();
       this.$el.parentNode.removeChild(this.$el);
