@@ -21,7 +21,7 @@ A project site with a theme on sneakers. The big encyclopedia of sneakers from a
 
 ## Tech Stack
 
-**Client:** Vue, VueRouter, TailwindCSS
+**Client:** Vue, VueRouter
 
 **Server:** Node, Express
 
