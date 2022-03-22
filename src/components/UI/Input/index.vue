@@ -17,6 +17,7 @@
         v-if="Object.keys(icon).length"
         :icon-data="icon"
       />
+
       <input
         :value="value"
         :placeholder="placeholder"
@@ -26,6 +27,7 @@
         @focusout="focus = false"
       >
     </div>
+
     <div class="ui-input__error">
       {{ errors[0] }}
     </div>
@@ -44,33 +46,60 @@ export default {
 
   data() {
     return {
+      /**
+       * Focus on input
+       * @type {boolean}
+       */
       focus: false,
     };
   },
 
   props: {
+    /**
+     * Input type
+     */
     type: {
       type: String,
       default: 'text',
     },
+
+    /**
+     * Name for validator
+     */
     name: {
       type: String,
       default: '',
     },
+
+    /**
+     * Input value
+     */
     value: {
       type: String,
       default: '',
     },
+
+    /**
+     * Input placeholder
+     */
     placeholder: {
       type: String,
       default: '',
     },
+
+    /**
+     * Input icon data
+     */
     icon: {
       type: Object,
       default() {
         return {};
       },
     },
+
+    /**
+     * Kit of validation rules
+     */
     validationRules: {
       type: Array,
       default: () => [],
@@ -78,6 +107,10 @@ export default {
   },
 
   computed: {
+    /**
+     * Process validation rules
+     * @returns {string}
+     */
     rules() {
       if (this.validationRules.length > 0) {
         return this.validationRules.join('|');
@@ -88,6 +121,7 @@ export default {
   },
 
   created() {
+    /** Configure and launch validator */
     configure({
       classes: {
         invalid: 'ui-input--error',
