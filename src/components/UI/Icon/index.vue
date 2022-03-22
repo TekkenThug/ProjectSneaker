@@ -23,10 +23,14 @@
  * @property {string|number} height - icon height
  * @property {string} name - name in assets folder
  */
+
 export default {
   name: 'SvgIcon',
 
   props: {
+    /**
+     * Icon data
+     */
     iconData: {
       type: Object,
       required: true,
@@ -34,6 +38,10 @@ export default {
   },
 
   computed: {
+    /**
+     * Resolve path to the icon
+     * @returns {string}
+     */
     iconPath() {
       // eslint-disable-next-line global-require,import/no-dynamic-require
       let icon = require(`@/assets/icons/${this.iconData.name}.svg`);
@@ -44,6 +52,10 @@ export default {
       return icon.url;
     },
 
+    /**
+     * Returns icon classname
+     * @returns {string}
+     */
     className() {
       return `svg-icon--${this.iconData.name}`;
     },
