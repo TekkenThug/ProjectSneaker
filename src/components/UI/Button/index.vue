@@ -17,14 +17,23 @@ import Icon from '@/components/UI/Icon';
 
 export default {
   name: 'Btn',
+
   components: { Icon },
+
   props: {
+    /**
+     * Button icon data
+     */
     icon: {
       default() {
         return {};
       },
       type: Object,
     },
+
+    /**
+     * Button title
+     */
     title: {
       default: '',
       type: String,
