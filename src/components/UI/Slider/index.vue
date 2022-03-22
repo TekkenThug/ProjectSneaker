@@ -18,11 +18,16 @@ export default {
 
   data() {
     return {
+      /**
+       * Swiper instance
+       * @type {Swiper}
+       */
       swiperInstance: null,
     };
   },
 
   mounted() {
+    /** Creating swiper instance */
     this.swiperInstance = new Swiper(this.$refs.swipeSlider, {
       spaceBetween: 50,
       centeredSlides: true,
