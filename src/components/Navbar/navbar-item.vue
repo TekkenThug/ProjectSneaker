@@ -19,11 +19,19 @@
 <script>
 export default {
   name: 'NavbarItem',
+
   props: {
+    /**
+     * Navbar item name
+     */
     name: {
       required: true,
       type: String,
     },
+
+    /**
+     * Router link
+     */
     link: {
       type: String,
       default: '',
